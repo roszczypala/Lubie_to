@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block jumbotron %}
+    <h1>Register</h1>            
+{% endblock %}
+
+{% block middle %}
+    <h1>Edit user</h1>
+    {{ form_start(form, { 'action': path('app_main_index'), 'attr': { 'role': 'form' } }) }}
+    <div class="form-group">{{ form_widget(form) }}</div>
+    <div>
+        <input class="btn btn-success" type="submit" value="{{ 'Edit'|trans }}" />
+    </div>
+    {{ form_end(form) }}                  
+{% endblock %}

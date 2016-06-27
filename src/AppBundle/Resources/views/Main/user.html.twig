@@ -1,0 +1,35 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}User page{% endblock %}
+{% block jumbotron %}   
+    <h1>{{user.username}}</h1>
+{% endblock %}
+
+{% block left %}  
+    There will be a photo here
+    <h4>Email: {{user.email}}</h4>
+{% endblock %}
+
+{% block middle %}                    
+    <h3 class="text-center">Crews</h3>
+    <div class="list-group">
+    {%for crew in crews%}
+        <a class="list-group-item" href="/crew/{{crew.id}}">{{crew.name}}</a>
+    {%endfor%}
+    </div>
+{% endblock %}
+
+{% block middle1 %} 
+    <h3 class="text-center">Events</h3>
+    <div class="list-group">
+    {%for event in events%}
+        <a class="list-group-item" href="/event/{{event.id}}">
+            {{event.name}}
+            {{event.date | date('Y-m-d H:i')}}
+        </a>
+    {%endfor%}
+{% endblock %} 
+
+{% block right %}
+    <a class="btn btn-success" href="/message/new/{{user.id}}">Message</a>
+{% endblock %}

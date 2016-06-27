@@ -1,0 +1,36 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Let's do it{% endblock %}
+
+
+
+{% block jumbotron %} 
+    <h1>{{crew.name}}</h1>
+    <p>{{crew.description}}</p>
+{% endblock %}
+
+{% block left %}         
+    <h2>Welcome</h2>
+{% endblock %}
+
+{% block middle %} 
+    <h2 class="text-center">Our events</h2>
+    <div class="list-group">
+        {%for event in events%}
+            <a href="/event/{{event.id}}">
+            {{event.name}}
+            {{event.date | date('Y-m-d H:i')}}</a>
+        {%endfor%}
+    </div>
+{% endblock %}    
+{% block middle1 %}     
+    <h2 class="text-center">Our members</h2>
+    <div class="list-group">
+    {%for user in users%}
+        <a class="list-group-item" href="/user/{{user.id}}">{{user.username}}</a>
+    {%endfor%}
+    </div>
+{% endblock %}       
+{% block right %} 
+    <a class="btn btn-success" href="/logout">Logout</a>
+{% endblock %}  

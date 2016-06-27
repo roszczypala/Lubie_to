@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {%include "FOSUserBundle::layout.html.twig"%}
+        {% block navbar %}
+         <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="/index">JoinUs</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/index">Home</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+              </ul>
+            </div>
+          </nav>
+        {% endblock %}
+        <div class="container">
+            <div class="jumbotron text-center">
+                {% block jumbotron %}
+                {% endblock %}
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="panel panel-default">
+                        {% block left %}
+                        {% endblock %}
+                    </div>    
+                </div>
+                <div class="col-md-8">
+                    <div class="panel panel-default">  
+                        {% block middle %}
+                        {% endblock %}
+                    </div>    
+                </div> 
+                <div class="col-md-2">
+                        {% block right %}
+                        {% endblock %}
+                </div>    
+            </div> 
+            <div class="row">
+                <div class="col-md-2">
+                        {% block left1 %}
+                        {% endblock %}
+                </div>
+                <div class="col-md-8">
+                    <div class="panel panel-default">  
+                        {% block middle1 %}
+                        {% endblock %}
+                    </div>    
+                </div> 
+                <div class="col-md-2">
+                        {% block right1 %}
+                        {% endblock %}
+                </div>    
+            </div>    
+        </div> 
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

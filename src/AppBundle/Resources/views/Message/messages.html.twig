@@ -1,0 +1,51 @@
+{% extends "::base.html.twig" %}
+
+{% block jumbotron %}
+    <h1>Messages</h1>
+    
+    {# Add a notice when message is removed#}
+    {% for flash_message in app.session.flashBag.get('notice') %}
+        <div class="flash-notice">
+            {{ flash_message }}
+        </div>
+
+    {% endfor %}
+    {% for flash_message in app.session.flashBag.get('notice1') %}
+        <div class="flash-notice">
+            {{ flash_message }}
+        </div>
+
+    {% endfor %}
+{% endblock %}
+
+{% block left %}
+    <h3>User: {{user.username}}</h3>
+{% endblock %}
+
+{% block middle %}  
+
+    <h2>Outbox :</h2>
+    <table class="table table-hover">
+
+    <th>Receiver</th><th>Title</th><th>Date</th><th></th>
+    {%for message in sentMessages %}
+        <tr><td>{{message.receiver}}</td><td> <a href="/message/{{message.id}}">{{message.title}}</a></td><td>{{message.date|date("Y-m-d")}}</td><td><a href="/message/delete/{{ message.id }}">Remove</a></td></tr>
+    {% else %}
+        <p> No messages found</p>
+    {%endfor%}
+    </table>
+{% endblock %}
+
+{% block middle1 %}                    
+    <table class="table table-hover">
+    <h2>Inbox : </h2>
+    <th>Author</th><th>Title</th><th>Date</th>
+    {% for message in receivedMessages %}
+        <tr><td>{{message.receiver}}</td><td> <a href="/message/{{message.id}}">{{message.title}}</a></td><td>{{message.date|date("Y-m-d")}}</td></tr>
+    {% else %}
+        <p> No messages found</p>
+    {%endfor%}
+    </table>
+{% endblock %}
+
+

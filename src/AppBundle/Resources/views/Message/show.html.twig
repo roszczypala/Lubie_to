@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+
+{% block middle %}   
+    <h1>Message</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Title</th>
+                <td>{{ message.title }}</td>
+            </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ message.text }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ message.date|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('message') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="/message/delete/{{message.id}}">
+            Delete
+        </a>
+    </li>
+</ul>
+{% endblock %}

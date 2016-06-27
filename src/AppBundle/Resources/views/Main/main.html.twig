@@ -1,0 +1,41 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Let's do it{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+       <div class="container-fluid">
+         <div class="navbar-header">
+           <a class="navbar-brand" href="/main">JoinUs</a>
+         </div>
+         <ul class="nav navbar-nav navbar-right">
+           <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+           <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+         </ul>
+       </div>
+    </nav>
+{% endblock %} 
+
+{% block jumbotron %}   
+    <h1>Join Us</h1>
+    <h3>Let's Do It Together</h3>
+{% endblock %}
+
+{% block left %}         
+    Hello stranger!
+    <p>Log in to see more</p>
+    <a class="btn btn-success" href="/login">Login</a> 
+    <p>Or create new account</p>
+    <a class="btn btn-success" href="/register">Register</a> 
+{% endblock %}
+
+{% block middle %}                    
+    {%for group in groups%}
+        <p>{{group.name}}</p>
+        <p>{{group.description}}</p>
+    {%endfor%}
+{% endblock %} 
+
+{% block right %} 
+    
+{% endblock %} 
