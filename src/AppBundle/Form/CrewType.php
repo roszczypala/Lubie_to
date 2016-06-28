@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormInterface;
 
 class CrewType extends AbstractType
 {
@@ -17,8 +18,7 @@ class CrewType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('accepted')
-            ->add('users')
+//            ->add('users')
         ;
     }
     
@@ -28,8 +28,11 @@ class CrewType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Crew'
-        ));
+        'empty_data' => function (FormInterface $form) {
+            return new Crew($form->get('accepted')->getData());
+        },
+    ));
+        
     }
 
     /**
