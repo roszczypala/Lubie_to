@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Crew;
 use AppBundle\Form\CrewType;
+use AppBundle\Entity\User;
 
 /**
  * Crew controller.
@@ -244,5 +245,33 @@ class CrewController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/addUser/{id}")
+     */
+    public function addUserToCrewAction($id)
+    {
+        $user = $this
+            ->getUser();
+
+        $crew = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Crew')
+            ->find($id);
+
+        if(!$crew){
+            throw $this->createNotFoundException('Crew not found');
+        }
+        $crew->addUser($user);
+        $user->addCrew($crew);
+
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+        $em->persist($user);
+        $em->persist($crew);
+        $em->flush();
+        return $this->redirectToRoute('crew');
     }
 }

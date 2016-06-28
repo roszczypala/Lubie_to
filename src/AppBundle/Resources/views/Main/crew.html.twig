@@ -15,7 +15,7 @@
     {% endif %}
 {% endblock %}
 
-{% block middle %} 
+{% block middle %}
     <h2 class="text-center">Our events</h2>
     <div class="list-group">
         {%for event in events%}
@@ -32,9 +32,15 @@
         <a class="list-group-item" href="/user/{{user.id}}">{{user.username}}</a>
     {%endfor%}
     </div>
+
 {% endblock %}       
 {% block right %} 
     <div class="btn-group-vertical">
+        <li>
+            <a href="{{ path('app_crew_addusertocrew', { 'id': crew.id }) }}">
+                JOIN!
+            </a>
+        </li>
         <a class="btn btn-success" href="/logout">Logout</a>
         <a class="btn btn-success" href="/crew/new">Create new crew</a>
         <a class="btn btn-success" href="/crew/{{crew.id}}/edit">Edit crew info</a>
