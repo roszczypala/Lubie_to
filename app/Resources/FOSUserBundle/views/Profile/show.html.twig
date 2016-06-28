@@ -1,6 +1,9 @@
 {% extends "::base.html.twig" %}
 
-{% block fos_user_content %}
+{% block middle %}
+    <div class="alert alert-success">
+        <h2>Profile updated</h2>
+    </div>
    {% include "FOSUserBundle:Profile:show_content.html.twig" %} 
-    {{user.username}}dddddddddddddddddddddddddddddddddddddddddddddddddddd
-{% endblock fos_user_content %}
+   <a class="btn btn-primary btn-block" href="/index">Return to homepage</a>
+{% endblock middle %}

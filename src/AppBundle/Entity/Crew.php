@@ -65,6 +65,7 @@ class Crew
     {
         $this->users = new ArrayCollection();
         $this->events = new ArrayCollection();
+//        $this->accepted = 0;
     }
     
     

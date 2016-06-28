@@ -68,7 +68,7 @@ class User extends BaseUser
     private $event;
     
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Photo")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Photo", mappedBy="user")
      */
     private $photo;
 
@@ -76,11 +76,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->crews = [];
-        $this->comments = [];
-        $this->events = [];
-        $this->messagesReceived = [];
-        $this->messagesSent = [];
+    // your own logic
     }
 
     /**
@@ -293,74 +289,5 @@ class User extends BaseUser
     public function getMessagesReceived()
     {
         return $this->messagesReceived;
-    }
-
-    /**
-     * Add messagesSent
-     *
-     * @param \AppBundle\Entity\Message $messagesSent
-     * @return User
-     */
-    public function addMessagesSent(\AppBundle\Entity\Message $messagesSent)
-    {
-        $this->messagesSent[] = $messagesSent;
-
-        return $this;
-    }
-
-    /**
-     * Remove messagesSent
-     *
-     * @param \AppBundle\Entity\Message $messagesSent
-     */
-    public function removeMessagesSent(\AppBundle\Entity\Message $messagesSent)
-    {
-        $this->messagesSent->removeElement($messagesSent);
-    }
-
-    /**
-     * Add messagesReceived
-     *
-     * @param \AppBundle\Entity\Message $messagesReceived
-     * @return User
-     */
-    public function addMessagesReceived(\AppBundle\Entity\Message $messagesReceived)
-    {
-        $this->messagesReceived[] = $messagesReceived;
-
-        return $this;
-    }
-
-    /**
-     * Remove messagesReceived
-     *
-     * @param \AppBundle\Entity\Message $messagesReceived
-     */
-    public function removeMessagesReceived(\AppBundle\Entity\Message $messagesReceived)
-    {
-        $this->messagesReceived->removeElement($messagesReceived);
-    }
-
-    /**
-     * Set photo
-     *
-     * @param \AppBundle\Entity\Photo $photo
-     * @return User
-     */
-    public function setPhoto(\AppBundle\Entity\Photo $photo = null)
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
-    /**
-     * Get photo
-     *
-     * @return \AppBundle\Entity\Photo 
-     */
-    public function getPhoto()
-    {
-        return $this->photo;
     }
 }
