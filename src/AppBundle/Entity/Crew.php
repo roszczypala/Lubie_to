@@ -42,7 +42,7 @@ class Crew
      *
      * @ORM\Column(name="accepted", type="smallint")
      */
-    private $accepted;
+    private $accepted = 0;
 
     /**
      * @var ArrayCollection
