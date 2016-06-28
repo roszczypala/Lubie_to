@@ -1,9 +1,12 @@
 {% extends '::base.html.twig' %}
 
-{% block body -%}
+{% block middle -%}
     <h1>Crew creation</h1>
 
-    {{ form(form) }}
+    {{ form_start(form) }}
+   
+    {{ form_widget(form.accepted, { "disabled":"disabled" }) }}
+    {{ form_end(form) }}
 
         <ul class="record_actions">
     <li>

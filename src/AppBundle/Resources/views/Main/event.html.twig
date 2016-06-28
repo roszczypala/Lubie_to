@@ -12,6 +12,7 @@
 {% endblock %}   
 
 {% block middle %} 
+    <p class="text-center">{{event.description}} </p>
     <h3>Users signed in</h3>
     <div class="list-group">
     {%for user in users%}
@@ -25,5 +26,9 @@
 {% endblock %}
 
 {% block right %} 
-    <a class="btn btn-success" href="/logout">Logout</a>
+    <div class="btn-group-vertical">
+        <a class="btn btn-success" href="/logout">Logout</a>
+        <a class="btn btn-success" href="/event/new">Create new event</a>
+        <a class="btn btn-success" href="/event/{{event.id}}/edit">Edit event info</a>
+    </div>
 {% endblock %}  

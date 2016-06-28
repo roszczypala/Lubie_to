@@ -32,5 +32,9 @@
     </div>
 {% endblock %}       
 {% block right %} 
-    <a class="btn btn-success" href="/logout">Logout</a>
+    <div class="btn-group-vertical">
+        <a class="btn btn-success" href="/logout">Logout</a>
+        <a class="btn btn-success" href="/crew/new">Create new crew</a>
+        <a class="btn btn-success" href="/crew/{{crew.id}}/edit">Edit crew info</a>
+    </div>
 {% endblock %}  
