@@ -1,4 +1,4 @@
-{% extends "::base.html.twig" %}
+{% extends "::base_main.html.twig" %}
 
 {% block title %}Let's do it{% endblock %}
 
@@ -21,18 +21,18 @@
     <h3>Let's Do It Together</h3>
 {% endblock %}
 
-{% block left %}         
-    Hello stranger!
-    <p>Log in to see more</p>
-    <a class="btn btn-success" href="/login">Login</a> 
-    <p>Or create new account</p>
-    <a class="btn btn-success" href="/register">Register</a> 
-{% endblock %}
-
 {% block middle %}                    
     {%for group in groups%}
-        <p>{{group.name}}</p>
-        <p>{{group.description}}</p>
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+              <div class="panel-heading">{{group.name}}</div>
+              <div class="panel-body">
+                  {%if group.photo is not null%}
+                      <img src="{{group.photo.path}}" width="300" height="200" alt="Image">
+                  {% endif %}
+              </div>
+            </div>
+        </div>
     {%endfor%}
 {% endblock %} 
 

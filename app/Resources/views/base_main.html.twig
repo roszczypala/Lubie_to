@@ -33,39 +33,9 @@
                 {% endblock %}
             </div>
             <div class="row">
-                <div class="col-md-2">
-                    <div class="panel panel-default">
-                        {% block left %}
-                        {% endblock %}
-                    </div>    
-                </div>
-                <div class="col-md-8">
-                    <div class="panel panel-default">  
-                        {% block middle %}
-                        {% endblock %}
-                    </div>    
-                </div> 
-                <div class="col-md-2">
-                        {% block right %}
-                        {% endblock %}
-                </div>    
-            </div> 
-            <div class="row">
-                <div class="col-md-2">
-                        {% block left1 %}
-                        {% endblock %}
-                </div>
-                <div class="col-md-8">
-                    <div class="panel panel-default">  
-                        {% block middle1 %}
-                        {% endblock %}
-                    </div>    
-                </div> 
-                <div class="col-md-2">
-                        {% block right1 %}
-                        {% endblock %}
-                </div>    
-            </div>    
+                {% block middle %}
+                {% endblock %}  
+            </div>               
         </div> 
         {% block javascripts %}<script src="{{ asset('js/bootstrap.js') }}"></script>{% endblock %}
     </body>
