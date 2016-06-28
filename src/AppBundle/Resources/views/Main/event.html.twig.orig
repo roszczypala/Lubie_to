@@ -9,13 +9,9 @@
 {% block left %}
     <h4>Event admin:{{event.eventAdmin}}</h4>
     <p>{{event.date | date('Y-m-d H:i')}} </p>
-    {%if event.photo is not null%}
-        <img src="{{event.photo.path}}" width="150" height="150" alt="Image">
-    {% endif %}
 {% endblock %}   
 
 {% block middle %} 
-    
     <p class="text-center">{{event.description}} </p>
     <h3>Users signed in</h3>
     <div class="list-group">
@@ -30,9 +26,15 @@
 {% endblock %}
 
 {% block right %} 
+<<<<<<< HEAD
     <div class="btn-group-vertical">
         <a class="btn btn-success" href="/logout">Logout</a>
         <a class="btn btn-success" href="/event/new">Create new event</a>
         <a class="btn btn-success" href="/event/{{event.id}}/edit">Edit event info</a>
     </div>
+=======
+    <a class="btn btn-success" href="/logout">Logout</a>
+    <a class="btn btn-success" href="/event/new">Create new event</a>
+    <a class="btn btn-success" href="/event/{{event.id}}/edit">Edit event info</a>
+>>>>>>> da9492d3f1b5824fe494165a56b3b396d61edcbd
 {% endblock %}  

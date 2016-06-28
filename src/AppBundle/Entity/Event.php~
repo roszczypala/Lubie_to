@@ -338,27 +338,4 @@ class Event
     {
         return $this->users;
     }
-
-    /**
-     * Set photo
-     *
-     * @param \AppBundle\Entity\Photo $photo
-     * @return Event
-     */
-    public function setPhoto(\AppBundle\Entity\Photo $photo = null)
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
-    /**
-     * Get photo
-     *
-     * @return \AppBundle\Entity\Photo 
-     */
-    public function getPhoto()
-    {
-        return $this->photo;
-    }
 }

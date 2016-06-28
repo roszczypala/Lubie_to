@@ -9,10 +9,8 @@
     <p>{{crew.description}}</p>
 {% endblock %}
 
-{% block left %}   
-    {%if crew.photo is not null%}
-        <img src="{{crew.photo.path}}" width="150" height="150" alt="Image">
-    {% endif %}
+{% block left %}         
+    <h2>Welcome</h2>
 {% endblock %}
 
 {% block middle %} 
@@ -34,9 +32,15 @@
     </div>
 {% endblock %}       
 {% block right %} 
+<<<<<<< HEAD
     <div class="btn-group-vertical">
         <a class="btn btn-success" href="/logout">Logout</a>
         <a class="btn btn-success" href="/crew/new">Create new crew</a>
         <a class="btn btn-success" href="/crew/{{crew.id}}/edit">Edit crew info</a>
     </div>
+=======
+    <a class="btn btn-success" href="/logout">Logout</a>
+    <a class="btn btn-success" href="/crew/new">Create new crew</a>
+    <a class="btn btn-success" href="/crew/{{crew.id}}/edit">Edit crew info</a>
+>>>>>>> da9492d3f1b5824fe494165a56b3b396d61edcbd
 {% endblock %}  
