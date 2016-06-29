@@ -254,6 +254,7 @@ class CrewController extends Controller
     {
         $user = $this
             ->getUser();
+        $userId = $user->getUsername();
 
         $crew = $this
             ->getDoctrine()
@@ -263,6 +264,19 @@ class CrewController extends Controller
         if(!$crew){
             throw $this->createNotFoundException('Crew not found');
         }
+
+        $usersInCrew = $crew->getUsers();
+        foreach ( $usersInCrew as $users){
+            if ($users  == $userId){
+                $this->addFlash(
+                    'notice',
+                    'ERROR, You are already in this crew'
+                );
+                return $this->redirectToRoute('crew_show',['id' => $id]);
+            }
+        }
+
+
         $crew->addUser($user);
         $user->addCrew($crew);
 
@@ -272,6 +286,10 @@ class CrewController extends Controller
         $em->persist($user);
         $em->persist($crew);
         $em->flush();
-        return $this->redirectToRoute('crew');
+        $this->addFlash(
+            'notice1',
+            'Congratulations, you just joined to this crew. Have fun!'
+        );
+        return $this->redirectToRoute('crew_show',['id' => $id]);
     }
 }

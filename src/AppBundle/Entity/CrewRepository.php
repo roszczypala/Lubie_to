@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class CrewRepository extends EntityRepository
 {
+//    public function isUserInThisCrew($iduser)
+//    {
+//        $query = $this->getEntityManager()->createQuery(
+//            "SELECT u FROM AppBundle:User u JOIN AppBundle:Crew i WHERE u.id = :iduser"
+//        )->setParameter('iduser', $iduser)
+//            ->getResult();
+//        return $query;
+//    }
 }

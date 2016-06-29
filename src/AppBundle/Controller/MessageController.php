@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Message;
 use AppBundle\Form\MessageType;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Message controller.
