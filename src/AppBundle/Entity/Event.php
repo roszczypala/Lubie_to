@@ -49,7 +49,44 @@ class Event
      *
      * @ORM\Column(name="date", type="datetime")
      */
+    
+    
     private $date;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255)
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="street", type="string", length=255)
+     */
+    private $street;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="street_number", type="string", length=255)
+     */
+    private $streetNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flat_number", type="string", length=255)
+     */
+    private $flatNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="postcode", type="string", length=255)
+     */
+    private $postcode;
     
     /**
      * @var ArrayCollection
@@ -67,20 +104,14 @@ class Event
     private $crew;
     
     /**
-     * @var Address
+     * @var users
      * 
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Address", inversedBy="events")
-     * @JoinColumn(name="address_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="events")
+     * @JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $address;
     
-    /**
-     * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="events")
-     * 
-     */
     private $users;
-    
+
     /**
      * @var User
      * 
@@ -88,11 +119,6 @@ class Event
      * @JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $eventAdmin;
-    
-    /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Photo")
-     */
-    private $photo;
 
     /**
      * Get id
@@ -236,30 +262,6 @@ class Event
         return $this->comments;
     }
 
-
-    /**
-     * Set address
-     *
-     * @param \AppBundle\Entity\Event $address
-     * @return Event
-     */
-    public function setAddress(\AppBundle\Entity\Event $address = null)
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    /**
-     * Get address
-     *
-     * @return \AppBundle\Entity\Event 
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
     /**
      * Set eventAdmin
      *
@@ -340,25 +342,131 @@ class Event
     }
 
     /**
-     * Set photo
+     * Set city
      *
-     * @param \AppBundle\Entity\Photo $photo
+     * @param string $city
      * @return Event
      */
-    public function setPhoto(\AppBundle\Entity\Photo $photo = null)
+    public function setCity($city)
     {
-        $this->photo = $photo;
+        $this->city = $city;
 
         return $this;
     }
 
     /**
-     * Get photo
+     * Get city
      *
-     * @return \AppBundle\Entity\Photo 
+     * @return string 
      */
-    public function getPhoto()
+    public function getCity()
     {
-        return $this->photo;
+        return $this->city;
+    }
+
+    /**
+     * Set street
+     *
+     * @param string $street
+     * @return Event
+     */
+    public function setStreet($street)
+    {
+        $this->street = $street;
+
+        return $this;
+    }
+
+    /**
+     * Get street
+     *
+     * @return string 
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * Set streetNumber
+     *
+     * @param string $streetNumber
+     * @return Event
+     */
+    public function setStreetNumber($streetNumber)
+    {
+        $this->streetNumber = $streetNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get streetNumber
+     *
+     * @return string 
+     */
+    public function getStreetNumber()
+    {
+        return $this->streetNumber;
+    }
+
+    /**
+     * Set flatNumber
+     *
+     * @param string $flatNumber
+     * @return Event
+     */
+    public function setFlatNumber($flatNumber)
+    {
+        $this->flatNumber = $flatNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get flatNumber
+     *
+     * @return string 
+     */
+    public function getFlatNumber()
+    {
+        return $this->flatNumber;
+    }
+
+    /**
+     * Set postcode
+     *
+     * @param string $postcode
+     * @return Event
+     */
+    public function setPostcode($postcode)
+    {
+        $this->postcode = $postcode;
+
+        return $this;
+    }
+
+    /**
+     * Get postcode
+     *
+     * @return string 
+     */
+    public function getPostcode()
+    {
+        return $this->postcode;
+    }
+    
+
+    /**
+     * Set users
+     *
+     * @param \AppBundle\Entity\User $users
+     * @return Event
+     */
+    public function setUsers(\AppBundle\Entity\User $users = null)
+    {
+        $this->users = $users;
+
+        return $this;
     }
 }
