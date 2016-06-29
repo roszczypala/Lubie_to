@@ -59,7 +59,7 @@ class Crew
     private $events;
     
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Photo")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Photo", mappedBy="crew")
      */
     private $photo;
     
