@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Event;
 use AppBundle\Form\EventType;
+use AppBundle\Entity\Comment;
 
 /**
  * Event controller.
@@ -106,7 +107,7 @@ class EventController extends Controller
      * @Method("GET")
      * @Template("AppBundle:Main:event.html.twig")
      */
-    public function showAction($id)
+    public function showAction($id, Request $request)
     {
         $event = $this->getDoctrine()->getRepository('AppBundle:Event')->find($id);
         
@@ -115,12 +116,33 @@ class EventController extends Controller
         if (!$event) {
             throw $this->createNotFoundException('Unable to find Event entity.');
         }
-
+        
+        $userManager = $this->container->get('fos_user.user_manager');
+        $loggedUser = $userManager->findUserByUsername($this->container->get('security.context')
+                        ->getToken()
+                        ->getUser());
+        
+        
+        $comment = new Comment();
+        $newCommentForm = $this->createFormBuilder($comment)->add('commentText')->add('submit', 'submit')->getForm();
+        
         $deleteForm = $this->createDeleteForm($id);
-        return ['users' => $users,
+        $newCommentForm->handleRequest($request);
+        
+         if($newCommentForm->isValid()) {
+            $comment->setUser($loggedUser);
+            $comment->setDate(date('Y-m-d H:i:s'));
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            
+            return ['users' => $users,
                 'event' => $event,
+                'comment_form' => $newCommentForm->createView(),
                 'delete_form' => $deleteForm->createView()
-                ];  
+                ];
+        }
+          
+        return ['comment_form' => $newCommentForm->createView()]; 
     }
 
     /**

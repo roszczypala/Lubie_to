@@ -43,22 +43,6 @@ class MainController extends Controller {
             'user' => $user
         ];
     }
-
-    /**
-     * @Route("/crew/{id}")
-     * @Template
-     */
-    public function crewAction($id) {
-        $crew = $this->getDoctrine()->getRepository('AppBundle:Crew')->find($id);
-
-        $events = $crew->getEvents();
-        $users = $crew->getUsers();
-
-        return ['events' => $events,
-            'users' => $users,
-            'crew' => $crew
-        ];
-    }
     
     /**
      * @Route("/user/{id}")
