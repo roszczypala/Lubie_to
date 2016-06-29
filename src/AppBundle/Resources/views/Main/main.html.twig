@@ -22,18 +22,6 @@
 {% endblock %}
 
 {% block middle %}                    
-    {#{%for group in groups%}
-        <div class="col-sm-4">
-            <div class="panel panel-primary">
-              <div class="panel-heading">{{group.name}}</div>
-              <div class="panel-body">
-                  {%if group.photo is not null%}
-                      <img src="{{group.photo.path}}" width="300" height="200" alt="Image">
-                  {% endif %}
-              </div>
-            </div>
-        </div>
-    {%endfor%}#}
      <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">

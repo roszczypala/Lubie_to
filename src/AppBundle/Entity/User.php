@@ -27,7 +27,7 @@ class User extends BaseUser
     
     /**
      * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Event", inversedBy="users")
+     * @ORM\ManyToMany(targetEntity="Event", mappedBy="users")
      * @ORM\JoinTable(name="id_events")
      */
     private $events;
@@ -91,12 +91,12 @@ class User extends BaseUser
     /**
      * @var Event
      * 
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Event", mappedBy="eventAdmin")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Event", mappedBy="eventAdmin")
      */
-    private $event;
+    private $eventsAdmined;
     
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Photo")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Photo", mappedBy="user")
      */
     private $photo;
 
@@ -177,29 +177,6 @@ class User extends BaseUser
     public function getComments()
     {
         return $this->comments;
-    }
-
-    /**
-     * Set event
-     *
-     * @param \AppBundle\Entity\Event $event
-     * @return User
-     */
-    public function setEvent(\AppBundle\Entity\Event $event = null)
-    {
-        $this->event = $event;
-
-        return $this;
-    }
-
-    /**
-     * Get event
-     *
-     * @return \AppBundle\Entity\Event 
-     */
-    public function getEvent()
-    {
-        return $this->event;
     }
 
     /**
@@ -483,5 +460,61 @@ class User extends BaseUser
     public function getPostcode()
     {
         return $this->postcode;
+    }
+
+    /**
+     * Add eventsAdmined
+     *
+     * @param \AppBundle\Entity\Event $eventAdmined
+     * @return User
+     */
+    public function addEventAdmined(\AppBundle\Entity\Event $eventAdmined)
+    {
+        $this->eventsAdmined[] = $eventAdmined;
+
+        return $this;
+    }
+
+    /**
+     * Remove eventsAdmined
+     *
+     * @param \AppBundle\Entity\Event $eventAdmined
+     */
+    public function removeEventAdmined(\AppBundle\Entity\Event $eventAdmined)
+    {
+        $this->eventsAdmined->removeElement($eventAdmined);
+    }
+
+    /**
+     * Get eventsAdmined
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEventsAdmined()
+    {
+        return $this->eventsAdmined;
+    }
+
+    /**
+     * Add eventsAdmined
+     *
+     * @param \AppBundle\Entity\Event $eventsAdmined
+     * @return User
+     */
+    public function addEventsAdmined(\AppBundle\Entity\Event $eventsAdmined)
+    {
+        $this->eventsAdmined[] = $eventsAdmined;
+
+        return $this;
+    }
+
+    /**
+     * Remove eventsAdmined
+     *
+     * @param \AppBundle\Entity\Event $eventsAdmined
+     */
+    public function removeEventsAdmined(\AppBundle\Entity\Event $eventsAdmined)
+    {
+        $this->eventsAdmined->removeElement($eventsAdmined);
     }
 }

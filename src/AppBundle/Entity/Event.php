@@ -106,7 +106,7 @@ class Event
     /**
      * @var users
      * 
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="events")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", inversedBy="events")
      * @JoinColumn(name="user_id", referencedColumnName="id")
      */
     
@@ -115,10 +115,15 @@ class Event
     /**
      * @var User
      * 
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User", inversedBy="event")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="eventsAdmined")
      * @JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $eventAdmin;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Photo", mappedBy="event")
+     */
+    private $photo;
 
     /**
      * Get id
@@ -468,5 +473,28 @@ class Event
         $this->users = $users;
 
         return $this;
+    }
+
+    /**
+     * Set photo
+     *
+     * @param \AppBundle\Entity\Photo $photo
+     * @return Event
+     */
+    public function setPhoto(\AppBundle\Entity\Photo $photo = null)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return \AppBundle\Entity\Photo 
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
     }
 }
