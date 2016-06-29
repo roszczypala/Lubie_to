@@ -19,13 +19,6 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var Address
-     * @ORM\ManyToOne(targetEntity="Address", inversedBy="users")
-     * @ORM\JoinColumn(name="address_id", referencedColumnName="id", onDelete="CASCADE")
-     */
-    private $address;
-
-    /**
      * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="Crew", inversedBy="users")
      * @ORM\JoinTable(name="id_crews")
@@ -45,6 +38,41 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="user")
      */
     private $comments;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255)
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="street", type="string", length=255)
+     */
+    private $street;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="street_number", type="string", length=255)
+     */
+    private $streetNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flat_number", type="string", length=255)
+     */
+    private $flatNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="postcode", type="string", length=255)
+     */
+    private $postcode;
     
     /**
      * @var ArrayCollection
@@ -82,29 +110,7 @@ class User extends BaseUser
         $this->messagesReceived = [];
         $this->messagesSent = [];
     }
-
-    /**
-     * Set address
-     *
-     * @param \AppBundle\Entity\Address $address
-     * @return User
-     */
-    public function setAddress(\AppBundle\Entity\Address $address = null)
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    /**
-     * Get address
-     *
-     * @return \AppBundle\Entity\Address 
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
+    
 
     /**
      * Add crews
@@ -362,5 +368,120 @@ class User extends BaseUser
     public function getPhoto()
     {
         return $this->photo;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     * @return User
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set street
+     *
+     * @param string $street
+     * @return User
+     */
+    public function setStreet($street)
+    {
+        $this->street = $street;
+
+        return $this;
+    }
+
+    /**
+     * Get street
+     *
+     * @return string 
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * Set streetNumber
+     *
+     * @param string $streetNumber
+     * @return User
+     */
+    public function setStreetNumber($streetNumber)
+    {
+        $this->streetNumber = $streetNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get streetNumber
+     *
+     * @return string 
+     */
+    public function getStreetNumber()
+    {
+        return $this->streetNumber;
+    }
+
+    /**
+     * Set flatNumber
+     *
+     * @param string $flatNumber
+     * @return User
+     */
+    public function setFlatNumber($flatNumber)
+    {
+        $this->flatNumber = $flatNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get flatNumber
+     *
+     * @return string 
+     */
+    public function getFlatNumber()
+    {
+        return $this->flatNumber;
+    }
+
+    /**
+     * Set postcode
+     *
+     * @param string $postcode
+     * @return User
+     */
+    public function setPostcode($postcode)
+    {
+        $this->postcode = $postcode;
+
+        return $this;
+    }
+
+    /**
+     * Get postcode
+     *
+     * @return string 
+     */
+    public function getPostcode()
+    {
+        return $this->postcode;
     }
 }

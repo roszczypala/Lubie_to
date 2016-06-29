@@ -19,7 +19,10 @@ class MainController extends Controller {
      */
     public function mainAction() {
         $groups = $this->getDoctrine()->getRepository('AppBundle:Crew')->findAll();
-        return ['groups' => $groups];
+        $n = count($groups);
+        return ['groups' => $groups,
+                'n' => $n
+                ];
     }
 
     /**
