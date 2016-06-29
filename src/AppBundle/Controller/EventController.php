@@ -104,46 +104,75 @@ class EventController extends Controller
      * Finds and displays a Event entity.
      *
      * @Route("/{id}", name="event_show")
-     * @Method("GET")
      * @Template("AppBundle:Main:event.html.twig")
      */
-    public function showAction($id, Request $request)
+    public function showAction(Request $request, $id)
     {
         $event = $this->getDoctrine()->getRepository('AppBundle:Event')->find($id);
         
         $users = $event->getUsers();
-        
-        if (!$event) {
-            throw $this->createNotFoundException('Unable to find Event entity.');
-        }
         
         $userManager = $this->container->get('fos_user.user_manager');
         $loggedUser = $userManager->findUserByUsername($this->container->get('security.context')
                         ->getToken()
                         ->getUser());
         
+        if (!$event) {
+            throw $this->createNotFoundException('Unable to find Event entity.');
+        }
+        
         
         $comment = new Comment();
-        $newCommentForm = $this->createFormBuilder($comment)->add('commentText')->add('submit', 'submit')->getForm();
+        $newCommentForm = $this->createFormBuilder($comment)->add('text')->add('submit', 'submit')->getForm();
         
-        $deleteForm = $this->createDeleteForm($id);
         $newCommentForm->handleRequest($request);
         
-         if($newCommentForm->isValid()) {
+        if($newCommentForm->isValid()) {
+            $date = new \DateTime();
             $comment->setUser($loggedUser);
-            $comment->setDate(date('Y-m-d H:i:s'));
+            $comment->setEvent($event);
+            $comment->setDate($date);
             $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
             $em->flush();
-            
-            return ['users' => $users,
-                'event' => $event,
-                'comment_form' => $newCommentForm->createView(),
-                'delete_form' => $deleteForm->createView()
-                ];
-        }
           
-        return ['comment_form' => $newCommentForm->createView()]; 
+        return ['users' => $users,
+                'event' => $event,
+            'comment_form' => $newCommentForm->createView()]; 
+        }
+        
+        return ['users' => $users,
+                'event' => $event,
+            'comment_form' => $newCommentForm->createView()]; 
     }
+    
+    /*
+     * @Route("/commentcreate")
+     * @Template("AppBundle:Event:newComment.html.twig")
+     */
+//    public function commentCreateAction(Request $request)
+//    {
+//        $comment = new Comment();
+//        $userManager = $this->container->get('fos_user.user_manager');
+//        $loggedUser = $userManager->findUserByUsername($this->container->get('security.context')
+//                        ->getToken()
+//                        ->getUser());
+//        
+//        $newCommentForm = $this->createFormBuilder($comment)->setAction($this->generateUrl('app_event_commentcreate'))->add('text')->add('submit', 'submit')->getForm(); 
+//        $newCommentForm->handleRequest($request);
+//        
+//        if($newCommentForm->isValid()) {
+//            
+//            $em = $this->getDoctrine()->getManager();
+//            $em->persist($comment);
+//            $em->flush();
+//            
+//            return $this->redirectToRoute('event_show');
+//        }
+//        return ['form' => $newCommentForm->createView()];
+//    }
+    
+    
 
     /**
      * Displays a form to edit an existing Event entity.

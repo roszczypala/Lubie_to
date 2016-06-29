@@ -1,45 +1,32 @@
 {% extends '::base.html.twig' %}
 
+{% block jumbotron %}
+    <h1>All crews</h1>
+{% endblock %}    
 {% block middle -%}
-    <h1>Crew list</h1>
-
-    <table class="records_list">
+    <table class="records_list table table-hover">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Accepted</th>
-                <th>Actions</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Description</th>
+                <th class="text-center">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('crew_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
+                <td><a href="{{ path('crew_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
                 <td>{{ entity.description }}</td>
-                <td>{{ entity.accepted }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('crew_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('crew_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                    <a href="{{ path('crew_show', { 'id': entity.id }) }}">show</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('crew_new') }}">
-                Create a new entry
+        <p>
+            <a class="btn btn-success" href="{{ path('crew_new') }}">
+                Add new group
             </a>
-        </li>
-    </ul>
+        </p>        
     {% endblock %}

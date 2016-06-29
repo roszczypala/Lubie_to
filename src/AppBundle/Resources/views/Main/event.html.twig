@@ -7,38 +7,37 @@
 {% endblock %}
 
 {% block left %}
-    <h4>Event admin:{{event.eventAdmin}}</h4>
-    <p>{{event.date | date('Y-m-d H:i')}} </p>
+    <p><strong>Event admin:<a href="/user/{{event.eventAdmin.id}}">{{event.eventAdmin}}</a></strong></p>
+    <p>Date: {{event.date | date('Y-m-d H:i')}} </p>
     {%if event.photo is not null%}
         <img src="{{event.photo.path}}" width="150" height="150" alt="Image">
     {% endif %}
 {% endblock %}   
 
 {% block middle %} 
-    
-    <p class="text-center">{{event.description}} </p>
-    <h3>Users signed in</h3>
+    <h3>Who joined</h3>
     <div class="list-group">
     {%for user in users%}
-        <a class="list-group-item" href="/user/{{user.id}}">{{user.username}}</a>
+        <strong><a class="list-group-item" href="/user/{{user.id}}">{{user.username}}</a></strong>
+    {% else %}  
+        <p>Noone is comming for now</p>  
     {%endfor%}
     </div>
-{% endblock %}
-
-{% block middle2 %} 
-    <p>{{event.description}}</p>
-    <p>{{comment_form}}</p>
-    <ul>
+    <h3>What we're doing</h3>
+    <div class='well'><p class="text-center">{{event.description}} </p></div>
+    
+    <h3>Leave a comment</h3>
+    <p>{{form(comment_form)}}</p>
         {% for comment in event.comments %}
-            <li>{{event.comment}}</li>   
+            <p>{{comment.text}}  {{comment.date|date('Y-m-d H:i:s')}}<p>   
         {% else %}  
             <p>No comments</p>        
         {% endfor %}
-    </ul>
 {% endblock %}
 
 {% block right %} 
     <div class="btn-group-vertical">
-        <a class="btn btn-success" href="/event/{{event.id}}/edit">Edit event info</a>
+        <a class="btn btn-success" href="/crew/{{event.crew.id}}">Return to crew site</a>
+        {#<a class="btn btn-success" href="/event/{{event.id}}/edit">Edit event info</a>#}
     </div>
 {% endblock %}  

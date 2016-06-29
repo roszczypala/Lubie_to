@@ -19,9 +19,12 @@
     <h2 class="text-center">Our events</h2>
     <div class="list-group">
         {%for event in events%}
-            <a href="/event/{{event.id}}">
-            {{event.name}}
-            {{event.date | date('Y-m-d H:i')}}</a>
+            <a class="list-group-item" href="/event/{{event.id}}">
+                <strong>{{event.name}}</strong>
+                {{event.date | date('Y-m-d H:i')}}
+            </a>
+        {% else %}  
+            <p>No events yet</p> 
         {%endfor%}
     </div>
 {% endblock %}    
@@ -29,14 +32,15 @@
     <h2 class="text-center">Our members</h2>
     <div class="list-group">
     {%for user in users%}
-        <a class="list-group-item" href="/user/{{user.id}}">{{user.username}}</a>
+        <strong><a class="list-group-item" href="/user/{{user.id}}">{{user.username}}</a></strong>
+    {% else %}  
+        <p>No members yet</p> 
     {%endfor%}
     </div>
 {% endblock %}       
 {% block right %} 
     <div class="btn-group-vertical">
-        <a class="btn btn-success" href="/logout">Logout</a>
         <a class="btn btn-success" href="/event/new">Create new event</a>
-        <a class="btn btn-success" href="/crew/{{crew.id}}/edit">Edit crew info</a>
+        {#<a class="btn btn-success" href="/crew/{{crew.id}}/edit">Edit crew info</a>#}
     </div>
 {% endblock %}  
