@@ -27,6 +27,14 @@
 
 {% block middle2 %} 
     <p>{{event.description}}</p>
+    <p>{{comment_form}}</p>
+    <ul>
+        {% for comment in event.comments %}
+            <li>{{event.comment}}</li>   
+        {% else %}  
+            <p>No comments</p>        
+        {% endfor %}
+    </ul>
 {% endblock %}
 
 {% block right %} 
