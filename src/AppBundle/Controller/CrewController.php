@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Crew;
 use AppBundle\Form\CrewType;
+use AppBundle\Entity\Photo;
+use AppBundle\Form\PhotoType;
 
 /**
  * Crew controller.
@@ -53,7 +55,7 @@ class CrewController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('crew_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('crew'));
         }
 
         return array(

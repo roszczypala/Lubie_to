@@ -38,22 +38,24 @@ class PhotoController extends Controller
     /**
      * Creates a new Photo entity.
      *
-     * @Route("/", name="photo_create")
-     * @Method("POST")
+     * @Route("/create/{crewId}", name="photo_create")
      * @Template("AppBundle:Photo:new.html.twig")
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, $crewId)
     {
         $entity = new Photo();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
+        $crew = $this->getDoctrine()->getRepository("AppBundle:Crew")->find($crewId);
+        
         if ($form->isValid()) {
+            $entity->setCrew($crew);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('photo_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('crew_show', array('id' => $crew->getId())));
         }
 
         return array(
@@ -72,7 +74,6 @@ class PhotoController extends Controller
     private function createCreateForm(Photo $entity)
     {
         $form = $this->createForm(new PhotoType(), $entity, array(
-            'action' => $this->generateUrl('photo_create'),
             'method' => 'POST',
         ));
 
@@ -81,23 +82,23 @@ class PhotoController extends Controller
         return $form;
     }
 
-    /**
+    /*
      * Displays a form to create a new Photo entity.
      *
      * @Route("/new", name="photo_new")
      * @Method("GET")
      * @Template()
      */
-    public function newAction()
-    {
-        $entity = new Photo();
-        $form   = $this->createCreateForm($entity);
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
+//    public function newAction()
+//    {
+//        $entity = new Photo();
+//        $form   = $this->createCreateForm($entity);
+//
+//        return array(
+//            'entity' => $entity,
+//            'form'   => $form->createView(),
+//        );
+//    }
 
     /**
      * Finds and displays a Photo entity.

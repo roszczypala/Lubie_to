@@ -63,7 +63,7 @@ class EventController extends Controller
             $em->flush();
             $id = $crew->getId();
 
-            return $this->redirect($this->generateUrl("crew_show", ['id' => $id]));
+            return $this->redirect($this->generateUrl("crew_show", ['id' => $crewId]));
         }
 
         return array(
