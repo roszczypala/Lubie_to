@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class CrewRepository extends EntityRepository
 {
+    public function findAllActive()
+    {
+        $dql = "SELECT c FROM AppBundle:Crew c WHERE c.accepted=1";
+        $query = $this->getEntityManager()->createQuery($dql);
+        
+        return $query->getResult();
+    }
+    
 }

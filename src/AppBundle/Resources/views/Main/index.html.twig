@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block left %}         
-    <h2>User: {{user.username}}</h2>
+    <h4>User:<br> {{user.username}}</h4>
     {%if user.photo is not null%}
         <img src="{{user.photo.path}}" alt="Photo" width="100" height="100" class="center-block"/>
     {% endif %}
@@ -34,8 +34,9 @@
 
 {% block right %} 
     <div class="btn-group-vertical">
-        <a class="btn btn-success" href="/profile/edit">Edit user</a>
+        <a class="btn btn-success" href="/crew">All crews</a>
         <a class="btn btn-success" href="/crew/new">Create new crew</a>
+        <a class="btn btn-success" href="/profile/edit">Edit user</a>
         <a class="btn btn-success" href="/message">Messages</a>
     </div>   
 

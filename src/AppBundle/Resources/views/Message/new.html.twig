@@ -1,15 +1,18 @@
 {% extends '::base.html.twig' %}
 
+{% block jumbotron %}
+    <h2>Create message</h2>
+{% endblock %}   
+
 {% block middle -%}
-    <h1>Message creation</h1>
-
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('message') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    {{ form_start(newForm) }}
+    <div class="form-group">{{ form_widget(newForm) }}</div>
+    <div class="form-group">
+        <input class="btn btn-success" type="submit" value="{{ 'Send'|trans }}" />
+    </div>
+    {{ form_end(newForm) }}
+    <a class="btn btn-success" href="/user/{{receiver.id}}">
+        Back to user page
+    </a>
+    
 {% endblock %}

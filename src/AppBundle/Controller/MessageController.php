@@ -40,7 +40,6 @@ class MessageController extends Controller
             ->createFormBuilder($message)
             ->add('title', 'text')
             ->add('text','textarea')
-            ->add('submit', 'submit')
             ->getForm();
 
         $form->handleRequest($request);
@@ -65,7 +64,9 @@ class MessageController extends Controller
 
             return $this->redirectToRoute('message');
         }
-        return $this->render('AppBundle:Message:new.html.twig', ['form' => $form->createView()]);
+        return $this->render('AppBundle:Message:new.html.twig', ['newForm' => $form->createView(),
+                                                                 'receiver' => $receiver                      
+                                                                ]);
 
     }
     

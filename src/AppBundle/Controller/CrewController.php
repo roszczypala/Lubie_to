@@ -29,7 +29,7 @@ class CrewController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Crew')->findAll();
+        $entities = $em->getRepository('AppBundle:Crew')->findAllActive();
 
         return array(
             'entities' => $entities,
