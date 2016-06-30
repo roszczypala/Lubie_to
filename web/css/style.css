@@ -30,4 +30,8 @@ body {
     opacity: 0.8 !important;
 }
 
+.well {
+    background-color: white !important;
+}
+
 
