@@ -17,15 +17,12 @@ class EventType extends AbstractType
         $builder            
             ->add('name')
             ->add('description')
-            ->add('accepted', 'number', ['empty_data' => 0])
             ->add('date')
-            ->add('crew')
             ->add('city')
             ->add('street')
             ->add('streetNumber')
             ->add('flatNumber')
             ->add('postcode')
-            ->add('users')
             ->add('eventAdmin')
         ;
     }

@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block left %}
-    <p><strong>Event admin:<a href="/user/{{event.eventAdmin.id}}">{{event.eventAdmin}}</a></strong></p>
+    <p><strong>Event admin:<a href="/user/{{event.eventAdmin.id}}">{{event.eventAdmin.username}}</a></strong></p>
     <p>Date: {{event.date | date('Y-m-d H:i')}} </p>
     {%if event.photo is not null%}
         <img src="{{event.photo.path}}" width="150" height="150" alt="Image">

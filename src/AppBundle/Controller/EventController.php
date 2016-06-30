@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Event;
+use AppBundle\Entity\Crew;
 use AppBundle\Form\EventType;
 use AppBundle\Entity\Comment;
 
@@ -39,22 +40,30 @@ class EventController extends Controller
     /**
      * Creates a new Event entity.
      *
-     * @Route("/", name="event_create")
-     * @Method("POST")
+     * @Route("/create/{crewId}", name="event_create")
      * @Template("AppBundle:Event:new.html.twig")
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, $crewId)
     {
         $entity = new Event();
+        $crew = $this->getDoctrine()->getRepository("AppBundle:Crew")->find($crewId);
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
+//        $userManager = $this->container->get('fos_user.user_manager');
+//        $loggedUser = $userManager->findUserByUsername($this->container->get('security.context')
+//                        ->getToken()
+//                        ->getUser());
 
         if ($form->isValid()) {
+            $entity->setAccepted(0);
+            $entity->setCrew($crew);
+            //$entity->getEventAdmin($loggedUser);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+            $id = $crew->getId();
 
-            return $this->redirect($this->generateUrl('event_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl("crew_show", ['id' => $id]));
         }
 
         return array(
@@ -73,7 +82,6 @@ class EventController extends Controller
     private function createCreateForm(Event $entity)
     {
         $form = $this->createForm(new EventType(), $entity, array(
-            'action' => $this->generateUrl('event_create'),
             'method' => 'POST',
         ));
 
@@ -85,7 +93,7 @@ class EventController extends Controller
     /**
      * Displays a form to create a new Event entity.
      *
-     * @Route("/new", name="event_new")
+     * @Route("/new/", name="event_new")
      * @Method("GET")
      * @Template()
      */

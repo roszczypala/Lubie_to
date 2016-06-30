@@ -31,5 +31,11 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/index, role: ROLE_USER }
+        - { path: ^/message/, role: ROLE_USER }
+        - { path: ^/photo/, role: ROLE_USER }
+        - { path: ^/user/, role: ROLE_USER }
+        - { path: ^/event/, role: ROLE_USER }
+        - { path: ^/crew/, role: ROLE_USER }
         - { path: ^/admin/, role: ROLE_ADMIN }
   
