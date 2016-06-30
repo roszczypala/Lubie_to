@@ -2,8 +2,6 @@
 
 {% block title %}Let's do it{% endblock %}
 
-
-
 {% block jumbotron %} 
     <h1>{{crew.name}}</h1>
     <p>{{crew.description}}</p>
@@ -12,6 +10,8 @@
 {% block left %}   
     {%if crew.photo is not null%}
         <img src="{{crew.photo.path}}" width="150" height="150" alt="Image">
+    {% else %}
+        <a class="btn btn-success" href="/photo/create/{{crew.id}}">Add photo</a>
     {% endif %}
 {% endblock %}
 
