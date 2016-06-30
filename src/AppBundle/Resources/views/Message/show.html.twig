@@ -1,35 +1,14 @@
 {% extends '::base.html.twig' %}
 
+{% block jumbotron %}
+    <h2>Message</h2>
+{% endblock %}    
+
 {% block middle %}   
-    <h1>Message</h1>
+    <h3>{{ message.title }}</h3>
+    <p>{{ message.text }}</p>
+    <p class="small">{{ message.date|date('Y-m-d H:i:s') }}</p>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Title</th>
-                <td>{{ message.title }}</td>
-            </tr>
-            <tr>
-                <th>Text</th>
-                <td>{{ message.text }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ message.date|date('Y-m-d H:i:s') }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('message') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="/message/delete/{{message.id}}">
-            Delete
-        </a>
-    </li>
-</ul>
+    <a class="btn btn-success" href="{{ path('message') }}">Back to the list</a>
+    <a class="btn btn-success" href="/message/delete/{{message.id}}">Delete</a>
 {% endblock %}
