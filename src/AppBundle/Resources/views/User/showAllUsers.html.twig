@@ -1,0 +1,36 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}All Users{% endblock %}
+
+{% block jumbotron %}
+<h1>Welcome to the AdminPanel</h1>
+
+{% endblock %}
+
+{% block left %}
+    <h3>Hello Admin!</h3>
+{% endblock %}
+{% block middle %}
+    <h1>All Users:</h1>
+    <table class="table table-hover">
+        <th class='text-center'>Username</th>
+        <th class='text-center'>Email</th>
+
+
+            {% for user in users %}
+                <tr>
+                    <td><a class="list-group-item" href="/user/{{user.id}}">{{user.username}}</a></td>
+                    <td>{{user.email}}</td>
+                    <td><a class="list-group-item" href="/panelAdmin/remove/{{user.id}}">Remove!</a></td>
+                </tr>
+            {% endfor %}
+    </table>
+{% endblock %}
+{% block right %}
+    <div class="btn-group-vertical">
+        <a class="btn btn-success" href="/panelAdmin/index">Homepage</a>
+        <a class="btn btn-success" href="/panelAdmin/crews">All crews</a>
+        <a class="btn btn-success" href="/panelAdmin/events">All events</a>
+        <a class="btn btn-success" href="/panelAdmin/users">All users</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}All Crews{% endblock %}
+
+{% block jumbotron %}
+    <h1>Welcome to the AdminPanel</h1>
+
+{% endblock %}
+
+{% block left %}
+    <h3>Hello Admin!</h3>
+{% endblock %}
+{% block middle %}
+    <h1>All Crews:</h1>
+    <table class="table table-hover">
+        <th class='text-center'>Name</th>
+        <th class='text-center'>Description</th>
+        <th class='text-center'>Accepted</th>
+
+
+        {% for crew in crews %}
+            <tr>
+                <td><a class="list-group-item" href="/crew/{{crew.id}}">{{crew.name}}</a></td>
+                <td>{{crew.description}}</td>
+                <td>{{crew.accepted}}</td>
+                <td><a class="list-group-item" href="/panelAdmin/crew/remove/{{crew.id}}">Remove!</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+{% block right %}
+    <div class="btn-group-vertical">
+        <a class="btn btn-success" href="/panelAdmin/index">Homepage</a>
+        <a class="btn btn-success" href="/panelAdmin/crews">All crews</a>
+        <a class="btn btn-success" href="/panelAdmin/events">All events</a>
+        <a class="btn btn-success" href="/panelAdmin/users">All users</a>
+    </div>
+{% endblock %}
