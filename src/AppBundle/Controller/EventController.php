@@ -61,7 +61,6 @@ class EventController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-            $id = $crew->getId();
 
             return $this->redirect($this->generateUrl("crew_show", ['id' => $crewId]));
         }
@@ -301,5 +300,45 @@ class EventController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+    
+     /**
+     * @Route("/addUserEvent/{id}")
+     */
+    public function addUserToEventAction($id)
+    {
+        $user = $this
+            ->getUser();
+        $userId = $user->getUsername();
+        $event = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Event')
+            ->find($id);
+        if(!$event){
+            throw $this->createNotFoundException('Event not found');
+        }
+        $usersInEvent = $event->getUsers();
+        foreach ( $usersInEvent as $users){
+            if ($users  == $userId){
+                $this->addFlash(
+                    'notice',
+                    'ERROR, You are already in this event'
+                );
+                return $this->redirectToRoute('event_show',['id' => $id]);
+            }
+        }
+        $event->addUser($user);
+        $user->addEvent($event);
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+        $em->persist($user);
+        $em->persist($event);
+        $em->flush();
+        $this->addFlash(
+            'notice1',
+            'Congratulations, you\'ve just joined to this event. Have fun!'
+        );
+        return $this->redirectToRoute('event_show',['id' => $id]);
     }
 }

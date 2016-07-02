@@ -249,7 +249,7 @@ class Event
     /**
      * Add comments
      *
-     * @param \AppBundle\Entity\Comment $comments
+     * @param \AppBundle\Entity\Comment $comment
      * @return Event
      */
     public function addComment(\AppBundle\Entity\Comment $comment)
@@ -262,7 +262,7 @@ class Event
     /**
      * Remove comment
      *
-     * @param \AppBundle\Entity\Comment $comments
+     * @param \AppBundle\Entity\Comment $comment
      */
     public function removeComment(\AppBundle\Entity\Comment $comment)
     {

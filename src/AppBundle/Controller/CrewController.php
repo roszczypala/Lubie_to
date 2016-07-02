@@ -111,6 +111,10 @@ class CrewController extends Controller
     public function showAction($id)
     {
         $crew = $this->getDoctrine()->getRepository('AppBundle:Crew')->find($id);
+        $userManager = $this->container->get('fos_user.user_manager');
+        $user = $userManager->findUserByUsername($this->container->get('security.context')
+                        ->getToken()
+                        ->getUser());
 
         if (!$crew) {
             throw $this->createNotFoundException('Unable to find Crew entity.');
@@ -123,6 +127,7 @@ class CrewController extends Controller
         return ['events' => $events,
             'users' => $users,
             'crew' => $crew,
+            'user' => $user,
             'delete_form' => $deleteForm->createView()
         ];
     }
@@ -246,5 +251,45 @@ class CrewController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+       
+    /**
+     * @Route("/addUser/{id}")
+     */
+    public function addUserToCrewAction($id)
+    {
+        $user = $this
+            ->getUser();
+        $userId = $user->getUsername();
+        $crew = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Crew')
+            ->find($id);
+        if(!$crew){
+            throw $this->createNotFoundException('Crew not found');
+        }
+        $usersInCrew = $crew->getUsers();
+        foreach ( $usersInCrew as $users){
+            if ($users  == $userId){
+                $this->addFlash(
+                    'notice',
+                    'ERROR, You are already in this crew'
+                );
+                return $this->redirectToRoute('crew_show',['id' => $id]);
+            }
+        }
+        $crew->addUser($user);
+        $user->addCrew($crew);
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+        $em->persist($user);
+        $em->persist($crew);
+        $em->flush();
+        $this->addFlash(
+            'notice1',
+            'Congratulations, you just joined to this crew. Have fun!'
+        );
+        return $this->redirectToRoute('crew_show',['id' => $id]);
     }
 }

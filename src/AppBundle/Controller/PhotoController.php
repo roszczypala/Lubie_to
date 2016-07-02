@@ -38,10 +38,10 @@ class PhotoController extends Controller
     /**
      * Creates a new Photo entity.
      *
-     * @Route("/create/{crewId}", name="photo_create")
+     * @Route("/crew/create/{crewId}", name="photo_crew_create")
      * @Template("AppBundle:Photo:new.html.twig")
      */
-    public function createAction(Request $request, $crewId)
+    public function crewCreateAction(Request $request, $crewId)
     {
         $entity = new Photo();
         $form = $this->createCreateForm($entity);
@@ -64,6 +64,65 @@ class PhotoController extends Controller
         );
     }
 
+    /**
+     * Creates a new Photo entity.
+     *
+     * @Route("/event/create/{eventId}", name="photo_event_create")
+     * @Template("AppBundle:Photo:new.html.twig")
+     */
+    public function eventCreateAction(Request $request, $eventId)
+    {
+        $entity = new Photo();
+        $form = $this->createCreateForm($entity);
+        $form->handleRequest($request);
+
+        $event = $this->getDoctrine()->getRepository("AppBundle:Event")->find($eventId);
+        
+        if ($form->isValid()) {
+            $entity->setEvent($event);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('event_show', array('id' => $event->getId())));
+        }
+
+        return array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        );
+    }
+
+        /**
+     * Creates a new Photo entity.
+     *
+     * @Route("/user/create/{userId}", name="photo_user_create")
+     * @Template("AppBundle:Photo:new.html.twig")
+     */
+    public function userCreateAction(Request $request, $userId)
+    {
+        $entity = new Photo();
+        $form = $this->createCreateForm($entity);
+        $form->handleRequest($request);
+
+        $user = $this->getDoctrine()->getRepository("AppBundle:User")->find($userId);
+        
+        if ($form->isValid()) {
+            $entity->setUser($user);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('index', array('id' => $user->getId())));
+        }
+
+        return array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        );
+    }
+    
+    
     /**
      * Creates a form to create a Photo entity.
      *
