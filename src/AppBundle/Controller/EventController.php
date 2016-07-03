@@ -180,7 +180,21 @@ class EventController extends Controller
 //        return ['form' => $newCommentForm->createView()];
 //    }
     
-    
+        public function getLocalization($city, $streetNumber, $street){
+
+        $city = "+".$city;
+        $streetNumber = "+".$streetNumber;
+        $street = "+".$street;
+
+        $jsoncontent = file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?address=".$streetNumber.$street.$city.".&key=AIzaSyBXhtL_yLZra6mzoFA7P3thVJyAw7w4vmg");
+        $arrayJSON = json_decode($jsoncontent, true);
+
+        $lat = $arrayJSON['results'][0]['geometry']['location']['lat'];
+        $lng = $arrayJSON['results'][0]['geometry']['location']['lng'];
+        $arrayGeo = [$lat, $lng];
+
+        return $arrayGeo;
+        }
 
     /**
      * Displays a form to edit an existing Event entity.
@@ -230,7 +244,7 @@ class EventController extends Controller
     /**
      * Edits an existing Event entity.
      *
-     * @Route("/{id}", name="event_update")
+     * @Route("edit/{id}", name="event_update")
      * @Method("PUT")
      * @Template("AppBundle:Event:edit.html.twig")
      */
@@ -248,6 +262,20 @@ class EventController extends Controller
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
+        $data = $editForm->getData();
+
+        $street = $data->getStreet();
+        $city = $data->getCity();
+        $streetNumber = $data->getStreetNumber();
+
+        $arrayGeo = $this->getLocalization($city, $streetNumber, $street);
+        
+        $latitude = $arrayGeo[0];
+        $longitude = $arrayGeo[1];
+
+        $entity -> setLatitude($latitude);
+        $entity -> setLongitude($longitude);
+        
         if ($editForm->isValid()) {
             $em->flush();
 

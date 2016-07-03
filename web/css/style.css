@@ -34,4 +34,8 @@ body {
     background-color: white !important;
 }
 
+#map {
+     width: 400px;
+     height: 400px;
+}
 

@@ -14,8 +14,31 @@
     {% endif %}
 {% endblock %}   
 
-{% block middle %} 
-    <h3>Who joined</h3>
+{% block middle %}
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            var mapDiv = document.getElementById('map');
+            var myLatLng = {lat: {{ event.latitude }}, lng: {{ event.longitude }}};
+
+            var map = new google.maps.Map(mapDiv, {
+                center: myLatLng,
+                zoom: 8
+            });
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: "{{ event.name }}\n{{ event.street }} {{ event.streetNumber }}\n{{ event.postcode }} {{ event.city }}"
+                
+               
+            });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXhtL_yLZra6mzoFA7P3thVJyAw7w4vmg&callback=initMap">
+    </script>
+    <p class="text-center">{{event.description}} </p>
+    <h3>Users signed in</h3>
     <div class="list-group">
     {%for user in users%}
         <strong><a class="list-group-item" href="/user/{{user.id}}">{{user.username}}</a></strong>
@@ -28,16 +51,20 @@
     
     <h3>Leave a comment</h3>
     <p>{{form(comment_form)}}</p>
+    <ul>
         {% for comment in event.comments %}
             <p>{{comment.text}}  {{comment.date|date('Y-m-d H:i:s')}}<p>   
         {% else %}  
             <p>No comments</p>        
         {% endfor %}
+    </ul>
+
+
 {% endblock %}
 
 {% block right %} 
     <div class="btn-group-vertical">
         <a class="btn btn-success" href="/crew/{{event.crew.id}}">Return to crew site</a>
-        {#<a class="btn btn-success" href="/event/{{event.id}}/edit">Edit event info</a>#}
+        <a class="btn btn-success" href="/event/{{event.id}}/edit">Edit event info</a>
     </div>
 {% endblock %}  

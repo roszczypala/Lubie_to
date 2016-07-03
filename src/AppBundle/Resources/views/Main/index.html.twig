@@ -13,7 +13,23 @@
     {% endif %}
 {% endblock %}
 
-{% block middle %}                    
+{% block middle %}
+
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            var mapDiv = document.getElementById('map');
+            var map = new google.maps.Map(mapDiv, {
+                center: {lat: {{ user.latitude }}, lng: {{ user.longitude}}},
+                zoom: 8
+            });
+        
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXhtL_yLZra6mzoFA7P3thVJyAw7w4vmg&callback=initMap">
+    </script>
+
     <h3 class="text-center">My crews</h3>
     <div class="list-group">
     {%for crew in crews%}
