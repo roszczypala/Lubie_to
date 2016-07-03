@@ -5,13 +5,36 @@
 {% block jumbotron %} 
     <h1>{{crew.name}}</h1>
     <p>{{crew.description}}</p>
+    
+    {# Add if user joined to crew or alredy is in.#}
+    {% if app.session.flashBag.has('notice') %}
+       <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('notice') %}
+                <br />
+                <br />
+                <br />
+               {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if app.session.flashBag.has('notice1') %}
+        <div class="alert alert-success">
+            <br />
+            <br />
+            <br />
+            {% for msg in app.session.flashBag.get('notice1') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}
 
 {% block left %}   
     {%if crew.photo is not null%}
         <img src="{{crew.photo.path}}" width="150" height="150" alt="Image">
     {% else %}
-        <a class="btn btn-success" href="/photo/create/{{crew.id}}">Add photo</a>
+        <a class="btn btn-success" href="/photo/crew/create/{{crew.id}}">Add photo</a>
     {% endif %}
 {% endblock %}
 
@@ -40,7 +63,11 @@
 {% endblock %}       
 {% block right %} 
     <div class="btn-group-vertical">
-        <a class="btn btn-success" href="/event/create/{{crew.id}}">Create new event</a>
-        {#<a class="btn btn-success" href="/crew/{{crew.id}}/edit">Edit crew info</a>#}
+        <a class="btn btn-success" href="{{ path('app_crew_addusertocrew', { 'id': crew.id }) }}">JOIN!</a>
+        {% if user in crew.users %}
+            <a class="btn btn-success" href="/event/create/{{crew.id}}">Add event</a>
+        {% endif %}
+        <a class="btn btn-success" href="/crew">All crews</a>
+        {#<a class="btn btn-success" href="/crew/{{crew.id}}/edit">Edit crew</a>#}
     </div>
 {% endblock %}  

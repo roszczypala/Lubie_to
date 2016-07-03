@@ -18,7 +18,7 @@
                 <td><a href="{{ path('crew_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
                 <td>{{ entity.description }}</td>
                 <td>
-                    <a href="{{ path('crew_show', { 'id': entity.id }) }}">show</a>
+                    <a href="{{ path('crew_show', { 'id': entity.id }) }}">Show</a>
                 </td>
             </tr>
         {% endfor %}
@@ -26,7 +26,7 @@
     </table>
         <p>
             <a class="btn btn-success" href="{{ path('crew_new') }}">
-                Add new group
+                Add
             </a>
         </p>        
     {% endblock %}

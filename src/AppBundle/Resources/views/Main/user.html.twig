@@ -33,5 +33,9 @@
 {% endblock %} 
 
 {% block right %}
-    <a class="btn btn-success" href="/message/new/{{user.id}}">Message</a>
+    {% if user != loggedUser %}
+        <a class="btn btn-success" href="/message/new/{{user.id}}">Message</a>
+    {% else %}
+        <a class="btn btn-success" href="/profile/edit">Update profile</a>
+    {% endif %}
 {% endblock %}
