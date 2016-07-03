@@ -40,6 +40,26 @@
 {% endblock %}   
 
 {% block middle %} 
+    <div id="map"></div>
+    <script>
+         function initMap() {
+            var mapDiv = document.getElementById('map');
+            var myLatLng = {lat: {{ event.latitude }}, lng: {{ event.longitude}}};
+
+            var map = new google.maps.Map(mapDiv, {
+                center: myLatLng,
+                zoom: 16
+            });
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: "{{ event.name }}\n{{ event.street }} {{ event.streetNumber }}\n{{ event.postcode }} {{ event.city }}"
+            });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXhtL_yLZra6mzoFA7P3thVJyAw7w4vmg&callback=initMap">
+    </script>
     <h3>Who joined</h3>
     <div class="list-group">
     {%for user in users%}

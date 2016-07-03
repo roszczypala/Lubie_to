@@ -243,7 +243,7 @@ class EventController extends Controller
     /**
      * Edits an existing Event entity.
      *
-     * @Route("edit/{id}", name="event_update")
+     * @Route("/{id}/edit", name="event_update")
      * @Method("PUT")
      * @Template("AppBundle:Event:edit.html.twig")
      */
