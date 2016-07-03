@@ -4,37 +4,97 @@
 
 {% block jumbotron %} 
     <h1>{{event.name}}</h1>
+    
+    {# Add if user joined to crew or alredy is in.#}
+    {% if app.session.flashBag.has('notice') %}
+       <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('notice') %}
+                <br />
+                <br />
+                <br />
+               {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if app.session.flashBag.has('notice1') %}
+        <div class="alert alert-success">
+            <br />
+            <br />
+            <br />
+            {% for msg in app.session.flashBag.get('notice1') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}
 
 {% block left %}
-    <h4>Event admin:{{event.eventAdmin}}</h4>
-    <p>{{event.date | date('Y-m-d H:i')}} </p>
+    <p><strong>Event admin:<a href="/user/{{event.eventAdmin.id}}">{{event.eventAdmin.username}}</a></strong></p>
+    <p>Date: {{event.date | date('Y-m-d H:i')}} </p>
+    {%if event.photo is not null%}
+        <img src="{{event.photo.path}}" width="150" height="150" alt="Image">
+    {% else %}    
+        <a class="btn btn-success" href="/photo/event/create/{{event.id}}">Add photo</a>
+    {% endif %}
 {% endblock %}   
 
-{% block middle %} 
+{% block middle %}
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            var mapDiv = document.getElementById('map');
+            var myLatLng = {lat: {{ event.latitude }}, lng: {{ event.longitude }}};
+
+            var map = new google.maps.Map(mapDiv, {
+                center: myLatLng,
+                zoom: 8
+            });
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: "{{ event.name }}\n{{ event.street }} {{ event.streetNumber }}\n{{ event.postcode }} {{ event.city }}"
+                
+               
+            });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXhtL_yLZra6mzoFA7P3thVJyAw7w4vmg&callback=initMap">
+    </script>
     <p class="text-center">{{event.description}} </p>
     <h3>Users signed in</h3>
     <div class="list-group">
     {%for user in users%}
-        <a class="list-group-item" href="/user/{{user.id}}">{{user.username}}</a>
+        <strong><a class="list-group-item" href="/user/{{user.id}}">{{user.username}}</a></strong>
+    {% else %}  
+        <p>Noone is comming for now</p>  
     {%endfor%}
     </div>
-{% endblock %}
+    <h3>What we're doing</h3>
+    <div class='well'><p class="text-center">{{event.description}} </p></div>
+    
+    <h3>Leave a comment</h3>
+    <p>{{form(comment_form)}}</p>
+    <ul>
+        {% for comment in event.comments %}
+            <p>{{comment.text}}  {{comment.date|date('Y-m-d H:i:s')}}<p>   
+        {% else %}  
+            <p>No comments</p>        
+        {% endfor %}
+    </ul>
 
-{% block middle2 %} 
-    <p>{{event.description}}</p>
+
 {% endblock %}
 
 {% block right %} 
-<<<<<<< HEAD
     <div class="btn-group-vertical">
-        <a class="btn btn-success" href="/logout">Logout</a>
-        <a class="btn btn-success" href="/event/new">Create new event</a>
+        <a class="btn btn-success" href="{{ path('app_event_addusertoevent', { 'id': event.id }) }}">JOIN!</a>
+        <a class="btn btn-success" href="/crew/{{event.crew.id}}">Return to crew site</a>
+<<<<<<< HEAD
         <a class="btn btn-success" href="/event/{{event.id}}/edit">Edit event info</a>
-    </div>
 =======
-    <a class="btn btn-success" href="/logout">Logout</a>
-    <a class="btn btn-success" href="/event/new">Create new event</a>
-    <a class="btn btn-success" href="/event/{{event.id}}/edit">Edit event info</a>
->>>>>>> da9492d3f1b5824fe494165a56b3b396d61edcbd
+        <a class="btn btn-success" href="/event/{{event.id}}/edit">Update event</a>
+>>>>>>> 06f150802f9e1262fd74cb2ad9d77f7798789d3e
+    </div>
 {% endblock %}  
