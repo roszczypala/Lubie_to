@@ -1,0 +1,41 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}All Events{% endblock %}
+
+{% block jumbotron %}
+    <h1>Welcome to the AdminPanel</h1>
+
+{% endblock %}
+
+{% block left %}
+    <h3>Hello Admin!</h3>
+{% endblock %}
+{% block middle %}
+    <h1>All Events:</h1>
+    <table class="table table-hover">
+        <th class='text-center'>Name</th>
+        <th class='text-center'>Description</th>
+        <th class='text-center'>Accepted</th>
+
+
+            {% for event in events %}
+                <tr>
+                    <td><a class="list-group-item" href="/crew/{{event.id}}">{{event.name}}</a></td>
+                    <td>{{event.description}}</td>
+                    <td>{{event.accepted}}</td>
+                    <td><a class="list-group-item" href="/panelAdmin/event/remove/{{event.id}}">Remove!</a></td>
+                </tr>
+            {% else %}
+                <p>No events</p>
+            {% endfor %}
+
+    </table>
+{% endblock %}
+{% block right %}
+    <div class="btn-group-vertical">
+        <a class="btn btn-success" href="/panelAdmin/index">Homepage</a>
+        <a class="btn btn-success" href="/panelAdmin/crews">All crews</a>
+        <a class="btn btn-success" href="/panelAdmin/events">All events</a>
+        <a class="btn btn-success" href="/panelAdmin/users">All users</a>
+    </div>
+{% endblock %}
