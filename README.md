@@ -3,31 +3,40 @@ joinUs
 
 Website was created using:
 
-HTML 
-CSS 
-Bootstrap front-end framework 
-OOP PHP 
-Symfony2 
-FOSUserBundle 
-Doctrine 2 ORM, DQL 
-Twig templates 
+- HTML
+- CSS
+- Bootstrap front-end framework
+- OOP
+- PHP
+- Symfony2
+- FOSUserBundle
+- Doctrine 2 ORM
+- DQL
+- Twig templates 
 
 Implemented features:
 
-registration 
-user login and logout 
-edit user profile 
-user can add and delete event
-user can create group and delete them 
+1. Registration, login and logout
+2. Editing user profile
+3. Adding new group, editing group info
+4. Adding new event, editing group info 
+5. Adding photos for user, group and event
+6. Geolocalization
+7. Map with marked event address (on event site)
+8. Map with marked logged user address
+9. Admin panel: deleting users, groups, events; accepting groups, events
+10. Main page for unlogged user
+11. Sending messages between users
+12. Adding comments for events
 
 Installation guide:
 
-download repository 
-unpack zip file 
-open command line and type: 'cd join_us' to browse board directory 
-next at command line type: 'composer install' - provide database parameters when asked 
-next at command line type: php app/console doctrine:database:create 
-next at command line type: php app/console doctrine:schema:update --force 
-next at command line type: php app/console server:start 
-browse: http://localhost:8000 
+1. Download repository 
+2. Unpack zip file 
+3. Open command line and type: 'cd join_us' to browse board directory 
+4. Next at command line type: 'composer install' - provide database parameters when asked 
+5. Next at command line type: php app/console doctrine:database:create 
+6. Next at command line type: php app/console doctrine:schema:update --force 
+7. Next at command line type: php app/console server:start 
+8. Browse: http://localhost:8000 
 
