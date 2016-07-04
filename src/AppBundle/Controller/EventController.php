@@ -57,7 +57,7 @@ class EventController extends Controller
         if ($form->isValid()) {
             $entity->setAccepted(0);
             $entity->setCrew($crew);
-            //$entity->getEventAdmin($loggedUser);
+//            $entity->getEventAdmin($loggedUser);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
