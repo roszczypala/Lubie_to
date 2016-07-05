@@ -66,10 +66,4 @@ class MainController extends Controller {
             'crews' => $crews
         ];
     }
-//    /**
-//     * @Route("/edit/user/{id}")
-//     * @Template
-//     */
-//    
-
 }
