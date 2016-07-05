@@ -1,15 +1,12 @@
 {% extends '::base.html.twig' %}
 
 {% block middle -%}
-    <h1>Photo creation</h1>
+    <h1>Add photo</h1>
 
     {{ form(form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('photo') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    <a class="btn btn-success btn-block" href="{{ path('photo') }}">
+        Back to the list
+    </a>
+    
 {% endblock %}
