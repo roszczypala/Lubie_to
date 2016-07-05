@@ -12,4 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class EventRepository extends EntityRepository
 {
+    public function findAllActive()
+    {
+        $dql = "SELECT c FROM AppBundle:Event c WHERE c.accepted=1";
+        $query = $this->getEntityManager()->createQuery($dql);
+        
+        return $query->getResult();
+    }
 }

@@ -26,7 +26,7 @@ class EventType extends AbstractType
             ->add('streetNumber')
             ->add('flatNumber')
             ->add('postcode')
-//            ->add('eventAdmin')
+            ->add('eventAdmin')
         ;
     }
     

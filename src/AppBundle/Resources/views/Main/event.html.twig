@@ -86,8 +86,10 @@
 
 {% block right %} 
     <div class="btn-group-vertical">
+        {% if loggedUser.id == event.eventAdmin.id %}
+            <a class="btn btn-success" href="/event/{{event.id}}/edit">Edit event info</a>
+        {% endif %}    
         <a class="btn btn-success" href="{{ path('app_event_addusertoevent', { 'id': event.id }) }}">JOIN!</a>
-        <a class="btn btn-success" href="/crew/{{event.crew.id}}">Return to crew site</a>
-        <a class="btn btn-success" href="/event/{{event.id}}/edit">Edit event info</a>
+        <a class="btn btn-success" href="/crew/{{event.crew.id}}">Return to crew site</a>   
     </div>
 {% endblock %}  
