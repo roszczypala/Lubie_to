@@ -83,3 +83,6 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\User
     use_flash_notifications: true
+    profile:
+        form:
+            type: app_user_profile

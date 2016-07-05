@@ -25,11 +25,25 @@ class UserRepository extends EntityRepository
             "SELECT c FROM AppBundle:Crew c ORDER BY c.name ASC"
         )->getResult();
     }
+    
+    public function findAllActiveCrews()
+    {
+        return $this->getEntityManager()->createQuery(
+            "SELECT c FROM AppBundle:Crew c WHERE c.accepted = 1 ORDER BY c.name ASC"
+        )->getResult();
+    }
 
     public function findAllEvents()
     {
         return $this->getEntityManager()->createQuery(
             "SELECT e FROM AppBundle:Event e ORDER BY e.name ASC"
+        )->getResult();
+    }
+    
+    public function findAllActiveEvents()
+    {
+        return $this->getEntityManager()->createQuery(
+            "SELECT e FROM AppBundle:Event e WHERE e.accepted = 1 ORDER BY e.name ASC"
         )->getResult();
     }
     

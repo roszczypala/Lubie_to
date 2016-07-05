@@ -62,7 +62,7 @@ class UserController extends Controller
 
         if(!$user){
             throw $this
-                ->createNotFoundException('Cannot found User');
+                ->createNotFoundException('Cannot found user');
         }
 
         $em = $this
@@ -78,12 +78,12 @@ class UserController extends Controller
      * @Route("/crews")
      * @Template("AppBundle:User:showAllCrews.html.twig")
      */
-    public function showAllCrewAction()
+    public function showAllCrewsAction()
     {
         $crews = $this
             ->getDoctrine()
             ->getRepository('AppBundle:User')
-            ->findAllCrews();
+            ->findAllActiveCrews();
 
         return ['crews' => $crews];
     }
@@ -101,7 +101,7 @@ class UserController extends Controller
 
         if(!$crew){
             throw $this
-                ->createNotFoundException('Cannot found Crew');
+                ->createNotFoundException('Cannot found crew');
         }
 
         $em = $this
@@ -122,7 +122,7 @@ class UserController extends Controller
         $events = $this
             ->getDoctrine()
             ->getRepository('AppBundle:User')
-            ->findAllEvents();
+            ->findAllActiveEvents();
 
         return ['events' => $events];
     }
@@ -140,7 +140,7 @@ class UserController extends Controller
 
         if(!$event){
             throw $this
-                ->createNotFoundException('Cannot found Event');
+                ->createNotFoundException('Cannot found event');
         }
 
         $em = $this
@@ -162,11 +162,11 @@ class UserController extends Controller
             ->find($id);
         if(!$crew){
             throw $this
-                ->createNotFoundException('Cannot found Crew.');
+                ->createNotFoundException('Cannot found crew.');
         }
         elseif($crew->getAccepted() == 1){
             throw $this
-                ->createNotFoundException('This Crew has activated before.');
+                ->createNotFoundException('This crew has activated before.');
         }
         else{
             $crew->setAccepted(1);

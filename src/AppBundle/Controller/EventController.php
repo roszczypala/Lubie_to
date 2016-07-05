@@ -45,18 +45,20 @@ class EventController extends Controller
      */
     public function createAction(Request $request, $crewId)
     {
+        $userManager = $this->container->get('fos_user.user_manager');
+        $loggedUser = $userManager->findUserByUsername($this->container->get('security.context')
+                        ->getToken()
+                        ->getUser());
+        
         $entity = new Event();
         $crew = $this->getDoctrine()->getRepository("AppBundle:Crew")->find($crewId);
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-//        $userManager = $this->container->get('fos_user.user_manager');
-//        $loggedUser = $userManager->findUserByUsername($this->container->get('security.context')
-//                        ->getToken()
-//                        ->getUser());
 
         if ($form->isValid()) {
             $entity->setAccepted(0);
             $entity->setCrew($crew);
+            $entity->addUser($loggedUser);
 //            $entity->getEventAdmin($loggedUser);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
@@ -144,12 +146,14 @@ class EventController extends Controller
             $em->flush();
           
         return ['users' => $users,
+                'loggedUser' => $loggedUser,
                 'event' => $event,
             'comment_form' => $newCommentForm->createView()]; 
         }
         
         return ['users' => $users,
                 'event' => $event,
+                'loggedUser' => $loggedUser,
             'comment_form' => $newCommentForm->createView()]; 
     }
     
