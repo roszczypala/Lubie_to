@@ -120,7 +120,7 @@ class CrewController extends Controller
             throw $this->createNotFoundException('Unable to find Crew entity.');
         }
 
-        $events = $crew->getEvents();
+        $events = $crew->getActiveEvents();
         $users = $crew->getUsers();
         $deleteForm = $this->createDeleteForm($id);
         
