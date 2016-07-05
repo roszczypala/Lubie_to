@@ -1,15 +1,16 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}Admin Panel{% endblock %}
+{% block title %}Admin panel{% endblock %}
 
 {% block middle %}
-    <h1>Now is accepted!</h1>
+    <h1>Accepted</h1>
 {% endblock %}
 {% block right %}
     <div class="btn-group-vertical">
-        <a class="btn btn-success" href="/panelAdmin/index">Homepage</a>
-        <a class="btn btn-success" href="/panelAdmin/crews">All crews</a>
-        <a class="btn btn-success" href="/panelAdmin/events">All events</a>
-        <a class="btn btn-success" href="/panelAdmin/users">All users</a>
+        <a class="btn btn-success" href="/index">User page</a>
+        <a class="btn btn-success" href="/admin/index">Main</a>
+        <a class="btn btn-success" href="/admin/crews">All groups</a>
+        <a class="btn btn-success" href="/admin/events">All events</a>
+        <a class="btn btn-success" href="/admin/users">All users</a>
     </div>
 {% endblock %}

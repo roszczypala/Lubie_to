@@ -1,9 +1,9 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}All Events{% endblock %}
+{% block title %}All events{% endblock %}
 
 {% block jumbotron %}
-    <h1>Welcome to the AdminPanel</h1>
+    <h1>Welcome to the admin panel</h1>
 
 {% endblock %}
 
@@ -11,7 +11,7 @@
     <h3>Hello Admin!</h3>
 {% endblock %}
 {% block middle %}
-    <h1>All Events:</h1>
+    <h1>All events:</h1>
     <table class="table table-hover">
         <th class='text-center'>Name</th>
         <th class='text-center'>Description</th>
@@ -20,10 +20,10 @@
 
             {% for event in events %}
                 <tr>
-                    <td><a class="list-group-item" href="/crew/{{event.id}}">{{event.name}}</a></td>
+                    <td><a href="/crew/{{event.id}}">{{event.name}}</a></td>
                     <td>{{event.description}}</td>
                     <td>{{event.accepted}}</td>
-                    <td><a class="list-group-item" href="/panelAdmin/event/remove/{{event.id}}">Remove!</a></td>
+                    <td><a class="btn btn-danger" href="/admin/event/remove/{{event.id}}">Remove</a></td>
                 </tr>
             {% else %}
                 <p>No events</p>
@@ -33,9 +33,10 @@
 {% endblock %}
 {% block right %}
     <div class="btn-group-vertical">
-        <a class="btn btn-success" href="/panelAdmin/index">Homepage</a>
-        <a class="btn btn-success" href="/panelAdmin/crews">All crews</a>
-        <a class="btn btn-success" href="/panelAdmin/events">All events</a>
-        <a class="btn btn-success" href="/panelAdmin/users">All users</a>
+        <a class="btn btn-success" href="/index">User page</a>
+        <a class="btn btn-success" href="/admin/index">Main</a>
+        <a class="btn btn-success" href="/admin/crews">All groups</a>
+        <a class="btn btn-success" href="/admin/events">All events</a>
+        <a class="btn btn-success" href="/admin/users">All users</a>
     </div>
 {% endblock %}

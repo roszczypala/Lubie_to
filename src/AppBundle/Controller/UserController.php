@@ -11,7 +11,7 @@ use AppBundle\Entity\Event;
 
 /**
  * Class UserController
- * @Route("/panelAdmin")
+ * @Route("/admin")
  */
 class UserController extends Controller
 {

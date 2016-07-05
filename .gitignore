@@ -1,0 +1,13 @@
+	.idea/
+	app/bootstrap.php.cache
+	app/cache/dev/
+	app/config/parameters.yml
+	app/logs/dev.log
+	bin/
+	nbproject/
+	src/AppBundle/Form/UserForm.php
+	src/AppBundle/Tests/Controller/CommentControllerTest.php
+	vendor/
+	web/bundles/
+	web/js/jquery-2.2.4.js
+	web/noPicture.png
