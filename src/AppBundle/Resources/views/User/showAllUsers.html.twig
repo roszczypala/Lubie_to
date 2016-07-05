@@ -18,11 +18,13 @@
 
 
             {% for user in users %}
+                {% if user.username != "Admin"%}
                 <tr>
                     <td><a href="/user/{{user.id}}">{{user.username}}</a></td>
                     <td>{{user.email}}</td>
                     <td><a class="btn btn-danger" href="/admin/remove/{{user.id}}">Remove</a></td>
                 </tr>
+                {% endif %}
             {% endfor %}
     </table>
 {% endblock %}
@@ -30,8 +32,8 @@
     <div class="btn-group-vertical">
         <a class="btn btn-success" href="/index">User page</a>
         <a class="btn btn-success" href="/admin/index">Main</a>
-        <a class="btn btn-success" href="/admin/crews">All crews</a>
-        <a class="btn btn-success" href="/admin/events">All events</a>
+        <a class="btn btn-success" href="/admin/crews">All active crews</a>
+        <a class="btn btn-success" href="/admin/events">All active events</a>
         <a class="btn btn-success" href="/admin/users">All users</a>
     </div>
 {% endblock %}

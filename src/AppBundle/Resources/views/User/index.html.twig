@@ -22,12 +22,12 @@
                 <td><a href="/crew/{{event.id}}">{{event.name}}</a></td>
                 <td>{{event.description}}</td>
                 <td>{{event.accepted}}</td>
-                <td><a class="btn btn-danger" href="/admin/event/getAccepted/{{event.id}}">Accept</a></td>
-                <td><a class="btn btn-success" href="/admin/event/remove/{{event.id}}">Remove</a></td>
+                <td><a class="btn btn-success" href="/admin/event/getAccepted/{{event.id}}">Accept</a></td>
+                <td><a class="btn btn-danger" href="/admin/event/remove/{{event.id}}">Remove</a></td>
             </tr>
 
             {% else  %}
-            <h3>No new events</h3>
+            <h3>No events to accept</h3>
         {% endfor %}
 
         </table>
@@ -49,15 +49,15 @@
                 <td><a class="btn btn-danger" href="/admin/crew/remove/{{crew.id}}">Remove</a></td> 
             </tr>
         {% else  %}
-            <h3>No new crews</h3>
+            <h3>No groups to accept</h3>
         {% endfor %}
 {% endblock %}
 {% block right %}
         <div class="btn-group-vertical">
         <a class="btn btn-success" href="/index">User page</a>
         <a class="btn btn-success" href="/admin/index">Main</a>
-        <a class="btn btn-success" href="/admin/crews">All groups</a>
-        <a class="btn btn-success" href="/admin/events">All events</a>
+        <a class="btn btn-success" href="/admin/crews">All active crews</a>
+        <a class="btn btn-success" href="/admin/events">All active events</a>
         <a class="btn btn-success" href="/admin/users">All users</a>
     </div>
 {% endblock %}

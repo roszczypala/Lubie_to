@@ -219,6 +219,19 @@ class Crew
         return $this->events;
     }
     
+    public function getActiveEvents() {
+        
+        $allEvents = $this->events;
+        $activeEvents = [];
+        foreach ($allEvents as $event) {
+            if($event->getAccepted() == 1) {
+                $activeEvents[] = $event;
+            }
+        }
+        
+        return $activeEvents;
+    }
+    
     public function __toString() {
         return $this->name;
     }
