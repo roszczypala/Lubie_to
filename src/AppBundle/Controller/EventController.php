@@ -25,7 +25,7 @@ class EventController extends Controller
      *
      * @Route("/", name="event")
      * @Method("GET")
-     * @Template()
+     * @Template("AppBundle:Main:event.html.twig")
      */
     public function indexAction()
     {
