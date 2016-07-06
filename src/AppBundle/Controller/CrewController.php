@@ -29,12 +29,18 @@ class CrewController extends Controller
      */
     public function indexAction()
     {
+        $userManager = $this->container->get('fos_user.user_manager');
+        $user = $userManager->findUserByUsername($this->container->get('security.context')
+                        ->getToken()
+                        ->getUser());
+        
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('AppBundle:Crew')->findAllActive();
 
         return array(
             'entities' => $entities,
+            'user' => $user
         );
     }
     /**
@@ -117,6 +123,7 @@ class CrewController extends Controller
     public function showAction($id)
     {
         $crew = $this->getDoctrine()->getRepository('AppBundle:Crew')->find($id);
+        
         $userManager = $this->container->get('fos_user.user_manager');
         $user = $userManager->findUserByUsername($this->container->get('security.context')
                         ->getToken()
@@ -275,8 +282,8 @@ class CrewController extends Controller
             throw $this->createNotFoundException('Crew not found');
         }
         $usersInCrew = $crew->getUsers();
-        foreach ( $usersInCrew as $users){
-            if ($users  == $userId){
+        foreach ($usersInCrew as $user){
+            if ($user == $userId){
                 $this->addFlash(
                     'notice',
                     'ERROR, You are already in this crew'
@@ -298,4 +305,34 @@ class CrewController extends Controller
         );
         return $this->redirectToRoute('crew_show',['id' => $id]);
     }
+    
+    /**
+     * @Route("/removeUser/{id}")
+     */
+    public function removeUserFromCrew($id)
+    {
+        $user = $this
+            ->getUser();
+        
+        $crew = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Crew')
+            ->find($id);
+        if(!$crew){
+            throw $this->createNotFoundException('Crew not found');
+        }
+        $crew->removeUser($user);
+        $user->removeCrew($crew);
+
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+        $em->persist($user);
+        $em->persist($crew);
+        $em->flush();
+
+        return $this->redirectToRoute('crew_show',['id' => $id]);
+    }
+    
+    
 }

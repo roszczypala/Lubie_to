@@ -7,23 +7,23 @@
 
 {% endblock %}
 
-{% block left %}
-    <h3>Hello Admin!</h3>
-{% endblock %}
+
 {% block middle %}
     <h1>Events to accept:</h1>
     <table class="table table-hover">
     <th class='text-center'>Name</th>
     <th class='text-center'>Description</th>
     <th class='text-center'>Accepted</th>
+    <th class='text-center'>Accept</th>
+    <th class='text-center'>Remove</th>
 
         {% for event in events %}
             <tr>
                 <td><a href="/crew/{{event.id}}">{{event.name}}</a></td>
                 <td>{{event.description}}</td>
                 <td>{{event.accepted}}</td>
-                <td><a class="btn btn-success" href="/admin/event/getAccepted/{{event.id}}">Accept</a></td>
-                <td><a class="btn btn-danger" href="/admin/event/remove/{{event.id}}">Remove</a></td>
+                <td><a href="/admin/event/getAccepted/{{event.id}}"><span class="glyphicon glyphicon-ok-sign accept"></span></a></td>
+                <td><a href="/admin/event/remove/{{event.id}}"><span class="glyphicon glyphicon-remove-sign remove"></span></a></td>
             </tr>
 
             {% else  %}
