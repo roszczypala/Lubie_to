@@ -31,7 +31,7 @@
 
 {% block left %}
     <p><strong>Event admin:<a href="/user/{{event.eventAdmin.id}}">{{event.eventAdmin.username}}</a></strong></p>
-    <p>Date: {{event.date | date('Y-m-d H:i')}} </p>
+    <p>{{event.date | date('Y-m-d H:i')}} </p>
     {%if event.photo is not null%}
         <img src="{{event.photo.path}}" width="150" height="150" alt="Image">
         <a class="btn btn-success" href="/photo/{{event.photo.id}}/edit">Update photo</a>
@@ -94,7 +94,9 @@
             <a class="btn btn-success" href="/event/{{event.id}}/edit">Edit event info</a>
         {% endif %}  
         {% if loggedUser not in event.users %}
-        <a class="btn btn-success" href="{{ path('app_event_addusertoevent', { 'id': event.id }) }}">JOIN!</a>
+            <a class="btn btn-success" href="{{ path('app_event_addusertoevent', { 'id': event.id }) }}">JOIN</a>
+        {% else %}
+            <a class="btn btn-success" href="/event/removeUser/{{event.id}}">Leave</a>
         {% endif %}
         <a class="btn btn-success" href="/crew/{{event.crew.id}}">Return to group site</a>   
     </div>

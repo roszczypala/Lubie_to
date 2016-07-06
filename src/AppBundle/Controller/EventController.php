@@ -373,4 +373,34 @@ class EventController extends Controller
         );
         return $this->redirectToRoute('event_show',['id' => $id]);
     }
+    
+    /**
+     * @Route("/removeUser/{id}")
+     */
+    public function removeUserFromEvent($id)
+    {
+        $user = $this
+            ->getUser();
+        
+        $event = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Event')
+            ->find($id);
+        
+        if(!$event){
+            throw $this->createNotFoundException('Event not found');
+        }
+        
+        $event->removeUser($user);
+        $user->removeEvent($event);
+
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+        $em->persist($user);
+        $em->persist($event);
+        $em->flush();
+
+        return $this->redirectToRoute('event_show',['id' => $id]);
+    }
 }

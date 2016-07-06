@@ -70,7 +70,9 @@
 {% block right %} 
     <div class="btn-group-vertical">
         {% if user not in crew.users %}
-        <a class="btn btn-success" href="{{ path('app_crew_addusertocrew', { 'id': crew.id }) }}">JOIN!</a>
+            <a class="btn btn-success" href="{{ path('app_crew_addusertocrew', { 'id': crew.id }) }}">JOIN</a>
+        {% else %}
+            <a class="btn btn-success" href="/crew/removeUser/{{crew.id}}">Leave</a>
         {% endif %}
         {% if user in crew.users %}
             <a class="btn btn-success" href="/event/create/{{crew.id}}">Add event</a>
