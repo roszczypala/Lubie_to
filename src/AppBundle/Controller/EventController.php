@@ -157,32 +157,6 @@ class EventController extends Controller
             'comment_form' => $newCommentForm->createView()]; 
     }
     
-    /*
-     * @Route("/commentcreate")
-     * @Template("AppBundle:Event:newComment.html.twig")
-     */
-//    public function commentCreateAction(Request $request)
-//    {
-//        $comment = new Comment();
-//        $userManager = $this->container->get('fos_user.user_manager');
-//        $loggedUser = $userManager->findUserByUsername($this->container->get('security.context')
-//                        ->getToken()
-//                        ->getUser());
-//        
-//        $newCommentForm = $this->createFormBuilder($comment)->setAction($this->generateUrl('app_event_commentcreate'))->add('text')->add('submit', 'submit')->getForm(); 
-//        $newCommentForm->handleRequest($request);
-//        
-//        if($newCommentForm->isValid()) {
-//            
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($comment);
-//            $em->flush();
-//            
-//            return $this->redirectToRoute('event_show');
-//        }
-//        return ['form' => $newCommentForm->createView()];
-//    }
-    
         public function getLocalization($city, $streetNumber, $street){
 
         $city = "+".$city;

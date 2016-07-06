@@ -63,7 +63,9 @@ class CrewController extends Controller
 
         if ($form->isValid()) {
             $entity->addUser($loggedUser);
+            $loggedUser->addCrew($entity);
             $em = $this->getDoctrine()->getManager();
+            $em->persist($loggedUser);
             $em->persist($entity);
             $em->flush();
 

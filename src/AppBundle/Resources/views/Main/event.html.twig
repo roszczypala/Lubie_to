@@ -4,29 +4,6 @@
 
 {% block jumbotron %} 
     <h1>{{event.name}}</h1>
-    
-    {# Add if user joined to crew or alredy is in.#}
-    {% if app.session.flashBag.has('notice') %}
-       <div class="alert alert-success">
-            {% for msg in app.session.flashBag.get('notice') %}
-                <br />
-                <br />
-                <br />
-               {{ msg }}
-            {% endfor %}
-        </div>
-    {% endif %}
-
-    {% if app.session.flashBag.has('notice1') %}
-        <div class="alert alert-success">
-            <br />
-            <br />
-            <br />
-            {% for msg in app.session.flashBag.get('notice1') %}
-                {{ msg }}
-            {% endfor %}
-        </div>
-    {% endif %}
 {% endblock %}
 
 {% block left %}
@@ -34,6 +11,7 @@
     <p>{{event.date | date('Y-m-d H:i')}} </p>
     {%if event.photo is not null%}
         <img src="{{event.photo.path}}" width="150" height="150" alt="Image">
+        <br>
         <a class="btn btn-success" href="/photo/{{event.photo.id}}/edit">Update photo</a>
     {% else %}    
         <a class="btn btn-success" href="/photo/event/create/{{event.id}}">Add photo</a>
