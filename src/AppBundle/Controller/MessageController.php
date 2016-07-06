@@ -80,6 +80,9 @@ class MessageController extends Controller
      */
     public function showAction($id)
     {
+        $loggedUser = $this
+            ->getUser();
+        
         $message = $this
             ->getDoctrine()
             ->getRepository('AppBundle:Message')
@@ -89,6 +92,7 @@ class MessageController extends Controller
         }
         
         return [
+            'loggedUser' => $loggedUser,
             'message' => $message];
     }
     

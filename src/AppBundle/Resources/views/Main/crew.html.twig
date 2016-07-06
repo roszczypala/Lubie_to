@@ -33,8 +33,14 @@
 {% block left %}   
     {%if crew.photo is not null%}
         <img src="{{crew.photo.path}}" width="150" height="150" alt="Image">
+        <br><br>
+       {% if user in crew.users %}
+        <a class="btn btn-success" href="/photo/{{crew.photo.id}}/edit">Update photo</a>
+       {% endif %}
     {% else %}
+        {% if user in crew.users %}
         <a class="btn btn-success" href="/photo/crew/create/{{crew.id}}">Add photo</a>
+        {% endif %}
     {% endif %}
 {% endblock %}
 
@@ -63,7 +69,9 @@
 {% endblock %}       
 {% block right %} 
     <div class="btn-group-vertical">
+        {% if user not in crew.users %}
         <a class="btn btn-success" href="{{ path('app_crew_addusertocrew', { 'id': crew.id }) }}">JOIN!</a>
+        {% endif %}
         {% if user in crew.users %}
             <a class="btn btn-success" href="/event/create/{{crew.id}}">Add event</a>
         {% endif %}

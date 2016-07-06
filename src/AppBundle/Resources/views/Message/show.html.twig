@@ -10,5 +10,7 @@
     <p class="small">{{ message.date|date('Y-m-d H:i:s') }}</p>
 
     <a class="btn btn-success" href="{{ path('message') }}">Back to the list</a>
-    <a class="btn btn-success" href="/message/delete/{{message.id}}">Delete</a>
+    {% if message.sender != loggedUser %}
+        <a class="btn btn-success" href="/message/new/{{message.sender.id}}">Reply</a>
+    {% endif %}    
 {% endblock %}
