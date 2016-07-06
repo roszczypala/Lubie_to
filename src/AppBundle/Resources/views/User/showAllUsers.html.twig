@@ -13,6 +13,7 @@
     <table class="table table-hover">
         <th class='text-center'>Username</th>
         <th class='text-center'>Email</th>
+        <th class="text-center">Delete</th>
 
 
             {% for user in users %}
@@ -20,7 +21,7 @@
                 <tr>
                     <td><a href="/user/{{user.id}}">{{user.username}}</a></td>
                     <td>{{user.email}}</td>
-                    <td><a class="btn btn-danger" href="/admin/remove/{{user.id}}">Remove</a></td>
+                    <td><a href="/admin/remove/{{user.id}}"><span class="glyphicon glyphicon-remove-sign remove"></span></a></td>
                 </tr>
                 {% endif %}
             {% endfor %}

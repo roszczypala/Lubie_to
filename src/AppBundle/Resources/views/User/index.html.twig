@@ -45,8 +45,8 @@
                 <td><a href="/crew/{{crew.id}}">{{crew.name}}</a></td>
                 <td>{{crew.description}}</td>
                 <td>{{crew.accepted}}</td>
-                <td><a class="btn btn-success" href="/admin/crew/getAccepted/{{crew.id}}">Accept</a></td>
-                <td><a class="btn btn-danger" href="/admin/crew/remove/{{crew.id}}">Remove</a></td> 
+                <td><a href="/admin/crew/getAccepted/{{crew.id}}"><span class="glyphicon glyphicon-ok-sign accept"></span></a></td>
+                <td><a href="/admin/crew/remove/{{crew.id}}"><span class="glyphicon glyphicon-remove-sign remove"></span></a></td> 
             </tr>
         {% else  %}
             <h3>No groups to accept</h3>
