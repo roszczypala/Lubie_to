@@ -56,35 +56,35 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255, nullable = true)
      */
     private $city;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="street", type="string", length=255)
+     * @ORM\Column(name="street", type="string", length=255, nullable = true)
      */
     private $street;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="street_number", type="string", length=255)
+     * @ORM\Column(name="street_number", type="string", length=255, nullable = true)
      */
     private $streetNumber;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="flat_number", type="string", length=255)
+     * @ORM\Column(name="flat_number", type="string", length=255, nullable = true)
      */
     private $flatNumber;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="postcode", type="string", length=255)
+     * @ORM\Column(name="postcode", type="string", length=255, nullable = true)
      */
     private $postcode;
     
@@ -127,13 +127,13 @@ class Event
     
     /**
      * @var float
-     * @ORM\Column(name="longitude", type="float")
+     * @ORM\Column(name="longitude", type="float", nullable = true)
      */
     private $longitude;
     
     /**
      * @var float
-     * @ORM\Column(name="latitude", type="float")
+     * @ORM\Column(name="latitude", type="float", nullable = true)
      */
     private $latitude;
 
