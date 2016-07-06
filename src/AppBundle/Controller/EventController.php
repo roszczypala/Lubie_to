@@ -55,6 +55,20 @@ class EventController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
+        $data = $form->getData();
+
+        $street = $data->getStreet();
+        $city = $data->getCity();
+        $streetNumber = $data->getStreetNumber();
+
+        $arrayGeo = $this->getLocalization($city, $streetNumber, $street);
+
+        $latitude = $arrayGeo[0];
+        $longitude = $arrayGeo[1];
+
+        $entity -> setLatitude($latitude);
+        $entity -> setLongitude($longitude);
+
         if ($form->isValid()) {
             $entity->setAccepted(0);
             $entity->setCrew($crew);
@@ -157,47 +171,27 @@ class EventController extends Controller
             'comment_form' => $newCommentForm->createView()]; 
     }
     
-    /*
-     * @Route("/commentcreate")
-     * @Template("AppBundle:Event:newComment.html.twig")
-     */
-//    public function commentCreateAction(Request $request)
-//    {
-//        $comment = new Comment();
-//        $userManager = $this->container->get('fos_user.user_manager');
-//        $loggedUser = $userManager->findUserByUsername($this->container->get('security.context')
-//                        ->getToken()
-//                        ->getUser());
-//        
-//        $newCommentForm = $this->createFormBuilder($comment)->setAction($this->generateUrl('app_event_commentcreate'))->add('text')->add('submit', 'submit')->getForm(); 
-//        $newCommentForm->handleRequest($request);
-//        
-//        if($newCommentForm->isValid()) {
-//            
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($comment);
-//            $em->flush();
-//            
-//            return $this->redirectToRoute('event_show');
-//        }
-//        return ['form' => $newCommentForm->createView()];
-//    }
-    
-        public function getLocalization($city, $streetNumber, $street){
+    public function getLocalization($city, $streetNumber, $street){
 
         $city = "+".$city;
         $streetNumber = "+".$streetNumber;
         $street = "+".$street;
 
-        $jsoncontent = file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?address=".$streetNumber.$street.$city.".&key=AIzaSyBXhtL_yLZra6mzoFA7P3thVJyAw7w4vmg");
-        $arrayJSON = json_decode($jsoncontent, true);
+        $jsonContent = file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?address=".$streetNumber.$street.$city.".&key=AIzaSyBXhtL_yLZra6mzoFA7P3thVJyAw7w4vmg");
+        $arrayJSON = json_decode($jsonContent, true);
+            
+        if($arrayJSON['status'] == 'OK') {
+            $lat = $arrayJSON['results'][0]['geometry']['location']['lat'];
+            $lng = $arrayJSON['results'][0]['geometry']['location']['lng'];
+            $arrayGeo = [$lat, $lng];
 
-        $lat = $arrayJSON['results'][0]['geometry']['location']['lat'];
-        $lng = $arrayJSON['results'][0]['geometry']['location']['lng'];
-        $arrayGeo = [$lat, $lng];
-
-        return $arrayGeo;
+            return $arrayGeo;
         }
+        if($arrayJSON['status'] == 'ZERO_RESULTS'){
+            $arrayGeo = [0,0];
+            return $arrayGeo;
+        }
+    }
 
     /**
      * Displays a form to edit an existing Event entity.
@@ -393,14 +387,12 @@ class EventController extends Controller
         
         $event->removeUser($user);
         $user->removeEvent($event);
-
         $em = $this
             ->getDoctrine()
             ->getManager();
         $em->persist($user);
         $em->persist($event);
         $em->flush();
-
         return $this->redirectToRoute('event_show',['id' => $id]);
     }
 }
