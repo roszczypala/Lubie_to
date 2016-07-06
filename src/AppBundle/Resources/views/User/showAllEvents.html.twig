@@ -19,7 +19,7 @@
 
             {% for event in events %}
                 <tr>
-                    <td><a href="/crew/{{event.id}}">{{event.name}}</a></td>
+                    <td>{{event.name}}</td>
                     <td>{{event.description}}</td>
                     <td>{{event.accepted}}</td>
                     <td><a href="/admin/event/remove/{{event.id}}"><span class="glyphicon glyphicon-remove-sign remove"></span></a></td>
