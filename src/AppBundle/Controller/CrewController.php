@@ -273,13 +273,16 @@ class CrewController extends Controller
      */
     public function addUserToCrewAction($id)
     {
-        $user = $this
-            ->getUser();
-        $userId = $user->getUsername();
+        $userManager = $this->container->get('fos_user.user_manager');
+        $userId = $userManager->findUserByUsername($this->container->get('security.context')
+                        ->getToken()
+                        ->getUser());
+        
         $crew = $this
             ->getDoctrine()
             ->getRepository('AppBundle:Crew')
             ->find($id);
+        
         if(!$crew){
             throw $this->createNotFoundException('Crew not found');
         }
@@ -293,12 +296,13 @@ class CrewController extends Controller
                 return $this->redirectToRoute('crew_show',['id' => $id]);
             }
         }
-        $crew->addUser($user);
-        $user->addCrew($crew);
+        
+        $crew->addUser($userId);
+        $userId->addCrew($crew);
         $em = $this
             ->getDoctrine()
             ->getManager();
-        $em->persist($user);
+        $em->persist($userId);
         $em->persist($crew);
         $em->flush();
         $this->addFlash(
