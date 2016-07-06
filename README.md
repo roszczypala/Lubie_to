@@ -1,5 +1,6 @@
 joinUs
 ======
+joinUs is a great new website connecting people with same hobbies, allowing them to meet up and do amazing things together.
 
 Website was created using:
 
