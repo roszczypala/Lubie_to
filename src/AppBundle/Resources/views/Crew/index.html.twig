@@ -9,7 +9,6 @@
             <tr>
                 <th class="text-center">Name</th>
                 <th class="text-center">Description</th>
-                <th class="text-center">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -17,9 +16,6 @@
             <tr>
                 <td><a href="{{ path('crew_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
                 <td>{{ entity.description }}</td>
-                <td>
-                    <a href="{{ path('crew_show', { 'id': entity.id }) }}">Show</a>
-                </td>
             </tr>
         {% endfor %}
         </tbody>

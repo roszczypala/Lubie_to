@@ -34,6 +34,7 @@
     <p>Date: {{event.date | date('Y-m-d H:i')}} </p>
     {%if event.photo is not null%}
         <img src="{{event.photo.path}}" width="150" height="150" alt="Image">
+        <a class="btn btn-success" href="/photo/{{event.photo.id}}/edit">Update photo</a>
     {% else %}    
         <a class="btn btn-success" href="/photo/event/create/{{event.id}}">Add photo</a>
     {% endif %}
@@ -71,11 +72,14 @@
     <h3>What we're doing</h3>
     <div class='well'><p class="text-center">{{event.description}} </p></div>
     
+    {% if loggedUser in event.users %}
     <h3>Leave a comment</h3>
     <p>{{form(comment_form)}}</p>
+    {% endif %}
     <ul>
         {% for comment in event.comments %}
-            <p>{{comment.text}}  {{comment.date|date('Y-m-d H:i:s')}}<p>   
+            <p><strong> {{comment.user.username}}</strong> <span class="small">{{comment.date|date('Y-m-d H:i:s')}}</span> </p>
+            <p>{{comment.text}}<p>   
         {% else %}  
             <p>No comments</p>        
         {% endfor %}
@@ -88,8 +92,10 @@
     <div class="btn-group-vertical">
         {% if loggedUser.id == event.eventAdmin.id %}
             <a class="btn btn-success" href="/event/{{event.id}}/edit">Edit event info</a>
-        {% endif %}    
+        {% endif %}  
+        {% if loggedUser not in event.users %}
         <a class="btn btn-success" href="{{ path('app_event_addusertoevent', { 'id': event.id }) }}">JOIN!</a>
-        <a class="btn btn-success" href="/crew/{{event.crew.id}}">Return to crew site</a>   
+        {% endif %}
+        <a class="btn btn-success" href="/crew/{{event.crew.id}}">Return to group site</a>   
     </div>
 {% endblock %}  

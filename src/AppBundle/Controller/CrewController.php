@@ -46,11 +46,17 @@ class CrewController extends Controller
      */
     public function createAction(Request $request)
     {
+        $userManager = $this->container->get('fos_user.user_manager');
+        $loggedUser = $userManager->findUserByUsername($this->container->get('security.context')
+                        ->getToken()
+                        ->getUser());
+        
         $entity = new Crew();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $entity->addUser($loggedUser);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();

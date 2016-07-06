@@ -30,13 +30,11 @@
     <th class='text-center'>Receiver</th>
     <th class='text-center'>Title</th>
     <th class='text-center'>Date</th>
-    <th></th>
     {%for message in sentMessages %}
         <tr>
-            <td>{{message.receiver}}</td>
+            <td><a href="/user/{{message.receiver.id}}">{{message.receiver}}</a></td>
             <td> <a href="/message/{{message.id}}">{{message.title}}</a></td>
             <td>{{message.date|date("Y-m-d")}}</td>
-            <td><a href="/message/delete/{{ message.id }}">Remove</a></td>
         </tr>
     {% else %}
         <p> No messages found</p>
@@ -50,11 +48,13 @@
     <th class='text-center'>Author</th>
     <th class='text-center'>Title</th>
     <th class='text-center'>Date</th>
+    <th class='text-center'>Delete</th>
     {% for message in receivedMessages %}
         <tr>
-            <td>{{message.receiver}}</td>
+            <td> <a href="/user/{{message.sender.id}}">{{message.sender}}</a></td>
             <td> <a href="/message/{{message.id}}">{{message.title}}</a></td>
             <td>{{message.date|date("Y-m-d")}}</td>
+            <td><a href="/message/delete/{{message.id}}"><span class="glyphicon glyphicon-remove-sign remove"></span></a></td>
         </tr>
     {% else %}
         <p> No messages found</p>
