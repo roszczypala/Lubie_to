@@ -21,9 +21,9 @@ Implemented features:
 3. Adding new group, editing group info
 4. Adding new event, editing group info 
 5. Adding photos for user, group and event
-6. Geolocalization
-7. Map with marked event address (on event site)
-8. Map with marked logged user address
+6. Editing photos
+7. Geolocalization
+8. Map with marked event address (on event site)
 9. Admin panel: deleting users, groups, events; accepting groups, events
 10. Main page for unlogged user
 11. Sending messages between users
@@ -40,3 +40,11 @@ Installation guide:
 7. Next at command line type: php app/console server:start 
 8. Browse: http://localhost:8000 
 
+Authors:
+
+    Matuszczak Marta,
+    Roszczypała Justyna,
+    Kawczyński Paweł,
+    Staniszewski Zachariasz.
+
+© 2016 Matuszczak Marta, Roszczypała Justyna, Kawczyński Paweł, Staniszewski Zachariasz
