@@ -21,9 +21,9 @@
                 <td>{{ entity.description }}</td>
                 <td>
                     {% if user not in entity.users %}
-                        <a href="{{ path('app_crew_addusertocrew', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-ok accept"></span></a>
+                        <a href="{{ path('app_crew_addusertocrew', { 'id': entity.id }) }}"><a href="#" data-toggle="tooltip" title="Join"><span class="glyphicon glyphicon-ok accept"></span></a></a>
                     {% else %}
-                        <a href="/crew/removeUser/{{entity.id}}"><span class="glyphicon glyphicon-remove remove"></span></a>
+                        <a href="/crew/removeUser/{{entity.id}}"><a href="#" data-toggle="tooltip" title="Leave"><span class="glyphicon glyphicon-remove remove"></span></a></a>
                     {% endif %}
                 </td>
             </tr>
