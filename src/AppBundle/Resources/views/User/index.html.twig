@@ -2,14 +2,29 @@
 
 {% block title %}Admin panel{% endblock %}
 
-{% block jumbotron %}
-    <h1>Welcome to admin panel</h1>
-
+{% block top %}
+    <div class="col-md-2">
+        <img src="{{asset('img/admin.png')}}" alt="Photo" width="200" height="200" class="left-block"/>
+    </div>
+    <div class="col-md-8">
+        <br><br><br><br><br><br>
+        <div class="user-info">
+            <p>Admin panel</p>           
+            <div class="btn-group">     
+                <a class="btn btn-custom" href="/index">User page</a>
+                <a class="btn btn-custom" href="/admin/index">Main</a>
+                <a class="btn btn-custom" href="/admin/crews">All active groups</a>
+                <a class="btn btn-custom" href="/admin/events">All active events</a>
+                <a class="btn btn-custom" href="/admin/users">All users</a>
+            </div>
+        </div>     
+    </div>
+    
 {% endblock %}
 
 
 {% block middle %}
-    <h1>Events to accept:</h1>
+    <h3>Events to accept</h3>
     <table class="table table-hover">
     <th class='text-center'>Name</th>
     <th class='text-center'>Description</th>
@@ -22,18 +37,18 @@
                 <td>{{event.name}}</td>
                 <td>{{event.description}}</td>
                 <td>{{event.accepted}}</td>
-                <td><a href="/admin/event/getAccepted/{{event.id}}"><span class="glyphicon glyphicon-ok-sign accept"></span></a></td>
-                <td><a href="/admin/event/remove/{{event.id}}"><span class="glyphicon glyphicon-remove-sign remove"></span></a></td>
+                <td><a href="/admin/event/getAccepted/{{event.id}}"><span class="glyphicon glyphicon-ok accept"></span></a></td>
+                <td><a href="/admin/event/remove/{{event.id}}"><span class="glyphicon glyphicon-remove remove"></span></a></td>
             </tr>
 
             {% else  %}
-            <h3>No events to accept</h3>
+            <p>No events to accept</p>
         {% endfor %}
 
         </table>
 {% endblock %}
 {% block middle1 %}
-        <h1>Groups to accept:</h1>
+        <h3>Groups to accept</h3>
         <table class="table table-hover">
         <th class='text-center'>Name</th>
         <th class='text-center'>Description</th>
@@ -42,22 +57,13 @@
 
         {% for crew in crews %}
             <tr>
-                <td><a href="/crew/{{crew.id}}">{{crew.name}}</a></td>
+                <td><a class="link" href="/crew/{{crew.id}}">{{crew.name}}</a></td>
                 <td>{{crew.description}}</td>
                 <td>{{crew.accepted}}</td>
-                <td><a href="/admin/crew/getAccepted/{{crew.id}}"><span class="glyphicon glyphicon-ok-sign accept"></span></a></td>
-                <td><a href="/admin/crew/remove/{{crew.id}}"><span class="glyphicon glyphicon-remove-sign remove"></span></a></td> 
+                <td><a href="/admin/crew/getAccepted/{{crew.id}}"><span class="glyphicon glyphicon-ok accept"></span></a></td>
+                <td><a href="/admin/crew/remove/{{crew.id}}"><span class="glyphicon glyphicon-remove remove"></span></a></td> 
             </tr>
         {% else  %}
-            <h3>No groups to accept</h3>
+            <p>No groups to accept</p>
         {% endfor %}
-{% endblock %}
-{% block right %}
-        <div class="btn-group-vertical">
-        <a class="btn btn-success" href="/index">User page</a>
-        <a class="btn btn-success" href="/admin/index">Main</a>
-        <a class="btn btn-success" href="/admin/crews">All active groups</a>
-        <a class="btn btn-success" href="/admin/events">All active events</a>
-        <a class="btn btn-success" href="/admin/users">All users</a>
-    </div>
 {% endblock %}

@@ -1,10 +1,12 @@
 {% extends '::base.html.twig' %}
 
-{% block jumbotron %}
-    <h1>All groups</h1>
+{% block title %}All groups{% endblock %}   
+
+{% block top %}
+    <h1 class="text-center">All groups</h1>
 {% endblock %}    
 {% block middle -%}
-    <table class="records_list table table-hover">
+    <table class="table table-hover text-center">
         <thead>
             <tr>
                 <th class="text-center">Name</th>
@@ -15,21 +17,21 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('crew_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                <td><a class="link" href="{{ path('crew_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
                 <td>{{ entity.description }}</td>
                 <td>
                     {% if user not in entity.users %}
-                        <a href="{{ path('app_crew_addusertocrew', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-ok-sign accept"></span></a>
+                        <a href="{{ path('app_crew_addusertocrew', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-ok accept"></span></a>
                     {% else %}
-                        <a href="/crew/removeUser/{{entity.id}}"><span class="glyphicon glyphicon-remove-sign remove"></span></a>
+                        <a href="/crew/removeUser/{{entity.id}}"><span class="glyphicon glyphicon-remove remove"></span></a>
                     {% endif %}
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-        <p>
-            <a class="btn btn-success" href="{{ path('crew_new') }}">
+        <p class="text-center">
+            <a class="btn btn-custom btn-block" href="{{ path('crew_new') }}">
                 Add
             </a>
         </p>        

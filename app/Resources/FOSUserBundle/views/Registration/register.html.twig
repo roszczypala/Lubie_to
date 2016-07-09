@@ -13,10 +13,14 @@
     </nav>
 {% endblock %}
 
-{% block jumbotron %}
-    <h1>Register</h1>
+{% block top %}
+    <h2 class="text-center">Register</h2>
 {% endblock %}    
 
 {% block middle %}
-    {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+    </div>
+    <div class="col-md-2"></div>
 {% endblock %}

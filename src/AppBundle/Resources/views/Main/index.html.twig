@@ -1,20 +1,33 @@
 {% extends "::base.html.twig" %}
 
 {% block title %}Let's do it{% endblock %}
-{% block jumbotron %}   
-    <h1>Join Us</h1>
-    <h3>Let's Do It Together</h3>
-{% endblock %}
-
-{% block left %}         
-    <h4>User:<br> {{user.username}}</h4>
+{% block top %} 
+    <div class="col-md-2">
     {%if user.photo is not null%}
-        <img src="{{user.photo.path}}" alt="Photo" width="100" height="100" class="center-block"/>
-        <br>
-        <a class="btn btn-success" href="/photo/{{user.photo.id}}/edit">Update photo</a>
-    {% else %}    
-        <a class="btn btn-success" href="/photo/user/create/{{user.id}}">Add photo</a>
+        <img src="{{user.photo.path}}" alt="Photo" width="200" height="200" class="left-block"/>
     {% endif %}
+    </div>
+    <div class="col-md-8">
+        <br><br><br><br><br><br>
+        <div class="user-info">
+            {{user.username|upper}}
+            <br>
+            <div class="btn-group">
+                {%if user.photo is not null%}
+                    <a class="btn btn-custom" href="/photo/{{user.photo.id}}/edit">Update photo</a>
+                {% else %}    
+                    <a class="btn btn-custom" href="/photo/user/create/{{user.id}}">Add photo</a>
+                {% endif %}
+                <a class="btn btn-custom" href="/crew/new">Add group</a>
+                <a class="btn btn-custom" href="/profile/edit">Update profile</a>
+                <a class="btn btn-custom" href="/message">Messages</a>
+                {% if user.username == 'Admin' %}
+                    <a class="btn btn-custom" href="/admin/index">Admin panel</a>
+                {% endif %}  
+            </div>
+        </div>
+        
+    </div>
 {% endblock %}
 
 {% block middle %}
@@ -34,7 +47,7 @@
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXhtL_yLZra6mzoFA7P3thVJyAw7w4vmg&callback=initMap">
     </script>#}
 
-    <h3 class="text-center">My crews</h3>
+    <h3 class="text-center">My groups</h3>
     <div class="list-group">
     {%for crew in crews%}
         <a class="list-group-item" href="/crew/{{crew.id}}">{{crew.name}}</a>
@@ -55,16 +68,5 @@
         <p>No events yet</p>     
     {%endfor%}
 {% endblock %} 
-
-{% block right %} 
-    <div class="btn-group-vertical">
-        {% if user.username == 'Admin' %}
-            <a class="btn btn-success" href="/admin/index">Admin panel</a>
-        {% endif %}    
-        <a class="btn btn-success" href="/crew/new">Add group</a>
-        <a class="btn btn-success" href="/profile/edit">Update profile</a>
-        <a class="btn btn-success" href="/message">Messages</a>
-    </div>   
-
-{% endblock %}              
+            
         

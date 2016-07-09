@@ -1,16 +1,25 @@
 {% extends '::base.html.twig' %}
 
-{% block jumbotron %}
-    <h2>Message</h2>
+{% block top %}
+    <h2 class="text-center">
+        {% if message.sender != loggedUser %}
+            Message from: {{message.sender.username|capitalize}}
+        {% else %}
+            Message to: {{message.receiver.username|capitalize}}
+        {% endif %}    
+    </h2>
+    <a class="btn btn-custom" href="{{ path('message') }}">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        Back to the list
+    </a>
 {% endblock %}    
 
-{% block middle %}   
-    <h3>{{ message.title }}</h3>
-    <p>{{ message.text }}</p>
-    <p class="small">{{ message.date|date('Y-m-d H:i:s') }}</p>
-
-    <a class="btn btn-success" href="{{ path('message') }}">Back to the list</a>
+{% block middle %}  
+    <h4>{{ message.title }}</h4>
+    <p class="well">{{ message.text }}</p>
+    <p>{{ message.date|date('Y-m-d H:i:s') }}</p>
+ 
     {% if message.sender != loggedUser %}
-        <a class="btn btn-success" href="/message/new/{{message.sender.id}}">Reply</a>
+        <a class="btn btn-custom" href="/message/new/{{message.sender.id}}">Reply</a>
     {% endif %}    
 {% endblock %}

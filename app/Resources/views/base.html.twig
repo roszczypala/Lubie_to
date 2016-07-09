@@ -3,12 +3,17 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Join Us{% endblock %}</title>
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
             <script src="{{asset('js/jquery-2.2.4.js')}}"></script>
+            <script>
+                $(document).ready(function(){
+                    $('[data-toggle="tooltip"]').tooltip();
+                });
+            </script>
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -18,7 +23,7 @@
          <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
               <div class="navbar-header">
-                <a class="navbar-brand" href="/index">JoinUs</a>
+                  <a class="navbar-brand" href="/index">JoinUs</a>
               </div>
               <ul class="nav navbar-nav">
                 <li><a href="/index">Home</a></li>
@@ -30,37 +35,34 @@
             </div>
           </nav>
         {% endblock %}
-        <div class="container text-center center-block">
-            <div class="jumbotron text-center">
-                {% block jumbotron %}
-                {% endblock %}
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                        {% block left %}
-                        {% endblock %}  
+        <div class="container">
+            <div class="row text-left left page-top">
+                <div class="col-md-1">
                 </div>
-                <div class="col-md-8">
+                {% block top %}
+                {% endblock %}
+                <div class="col-md-1">
+                </div>
+            </div>
+            <hr>
+            <div class="row text-center">
+                <div class="col-md-1"> 
+                </div>
+                <div class="col-md-10">
                         {% block middle %}
                         {% endblock %}   
                 </div> 
-                <div class="col-md-2">
-                        {% block right %}
-                        {% endblock %}
+                <div class="col-md-1">
                 </div>    
             </div> 
-            <div class="row">
-                <div class="col-md-2">
-                        {% block left1 %}
-                        {% endblock %}
+            <div class="row text-center">
+                <div class="col-md-1">
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-10">
                         {% block middle1 %}
                         {% endblock %}   
                 </div> 
-                <div class="col-md-2">
-                        {% block right1 %}
-                        {% endblock %}
+                <div class="col-md-1">
                 </div>    
             </div>    
         </div> 

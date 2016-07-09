@@ -1,8 +1,57 @@
 {% extends '::base.html.twig' %}
 
+{% block top %}
+    <h1 class="text-center">Update event</h1>
+{% endblock %} 
+
 {% block middle -%}
-    <h1>Event edit</h1>
 
-    {{ form(edit_form) }}
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+    {{ form_start(edit_form, {'attr':{'role':'form'}}) }}
+   
+    <div class="form-group">
+        <label for="form_name">Name: </label>
 
+        {{ form_widget(edit_form.name, {'attr':{'class':'form-control'}})}}
+    </div>
+    <div class="form-group">
+        <label for="form_description">Description: </label>
+
+        {{ form_widget(edit_form.description, {'attr':{'class':'form-control'}})}}
+    </div>
+    <div class="form-group">
+        <label for="form_date">Date: </label>
+        {{ form_widget(edit_form.date)}}
+    </div>
+    <div class="form-group">
+        <label for="form_city">City: </label>
+        {{ form_widget(edit_form.city, {'attr':{'class':'form-control'}})}}
+    </div>
+   <div class="form-group">
+        <label for="form_street">Street: </label>
+        {{ form_widget(edit_form.street, {'attr':{'class':'form-control'}})}}
+    </div>
+    <div class="form-group">
+        <label for="form_streetNumber">Street number: </label>
+        {{ form_widget(edit_form.streetNumber, {'attr':{'class':'form-control'}})}}
+    </div>
+    <div class="form-group">
+        <label for="form_flatNumber">Flat number: </label>
+        {{ form_widget(edit_form.flatNumber, {'attr':{'class':'form-control'}})}}
+    </div>
+    <div class="form-group">
+        <label for="form_postcode">Postcode: </label>
+        {{ form_widget(edit_form.postcode, {'attr':{'class':'form-control'}})}}
+    </div>
+    <div class="form-group">
+        <label for="form_eventAdmin">Event admin: </label>
+        {{ form_widget(edit_form.eventAdmin, {'attr':{'class':'form-control'}})}}
+    </div>
+    <input class="btn btn-custom" type="submit" value="{{ 'Update'|trans }}" />
+    
+    {{ form_end(edit_form) }}
+    </div>
+    <div class="col-md-2"></div>
+    
 {% endblock %}
