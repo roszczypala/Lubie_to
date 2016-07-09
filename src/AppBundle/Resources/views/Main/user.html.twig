@@ -1,16 +1,31 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}User page{% endblock %}
-{% block jumbotron %}   
-    <h1>{{user.username}}</h1>
+
+{% block top %}   
+    <div class="col-md-2">
+    {%if user.photo is not null%}
+        <img src="{{user.photo.path}}" alt="Photo" width="200" height="200" class="left-block"/>
+    {% endif %}
+    </div>
+    <div class="col-md-8">
+        <br><br><br><br><br><br>
+        <div class="user-info">
+            {{user.username|upper}}
+            <p class="small">{{user.email}}</p>
+            <div class="btn-group">
+                {% if user != loggedUser %}
+                    <a class="btn btn-custom" href="/message/new/{{user.id}}">Message</a>
+                {% else %}
+                    <a class="btn btn-custom" href="/profile/edit">Update profile</a>
+                {% endif %}
+            </div>
+        </div>
+        
+    </div>
+    
+    
 {% endblock %}
 
-{% block left %}  
-    {%if user.photo is not null%}
-        <img src="{{user.photo.path}}" alt="Photo" width="100" height="100" class="center-block"/>
-    {% endif %}
-    <h4>Email: {{user.email}}</h4>
-{% endblock %}
 
 {% block middle %}                    
     <h3 class="text-center">Crews</h3>
@@ -32,10 +47,3 @@
     {%endfor%}
 {% endblock %} 
 
-{% block right %}
-    {% if user != loggedUser %}
-        <a class="btn btn-success" href="/message/new/{{user.id}}">Message</a>
-    {% else %}
-        <a class="btn btn-success" href="/profile/edit">Update profile</a>
-    {% endif %}
-{% endblock %}

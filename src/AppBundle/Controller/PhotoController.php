@@ -136,8 +136,6 @@ class PhotoController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
         return $form;
     }
 
@@ -224,8 +222,6 @@ class PhotoController extends Controller
             'action' => $this->generateUrl('photo_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }

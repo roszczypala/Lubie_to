@@ -100,6 +100,8 @@ class EventController extends Controller
             'method' => 'POST',
         ));
 
+        $form->add('submit', 'submit', array('label' => 'Create'));
+
         return $form;
     }
 
@@ -169,7 +171,11 @@ class EventController extends Controller
             'comment_form' => $newCommentForm->createView()]; 
     }
     
+<<<<<<< HEAD
+        public function getLocalization($city, $streetNumber, $street){
+=======
     public function getLocalization($city, $streetNumber, $street){
+>>>>>>> 5b766fe94bcec1e82d1470a1b26d504b285c2c37
 
         $city = "+".$city;
         $streetNumber = "+".$streetNumber;
@@ -232,6 +238,7 @@ class EventController extends Controller
             'method' => 'PUT',
         ));
 
+        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }

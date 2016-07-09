@@ -1,18 +1,30 @@
 {% extends '::base.html.twig' %}
 
-{% block jumbotron %}
-    <h2>Create message</h2>
+{% block top %}
+    <h2 class="text-center">New message</h2>
+    <a class="btn btn-custom" href="/user/{{receiver.id}}">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        Back to user page
+    </a>
 {% endblock %}   
 
 {% block middle -%}
-    {{ form_start(newForm) }}
-    <div class="form-group">{{ form_widget(newForm) }}</div>
-    <div class="form-group">
-        <input class="btn btn-success" type="submit" value="{{ 'Send'|trans }}" />
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        {{ form_start(newForm, {'attr':{'role':'form'}}) }}
+        <div class="form-group">
+            <label for="newForm_title">Title: </label>
+            {{ form_widget(newForm.title, {'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            <label for="newForm_text">Text: </label>
+            {{ form_widget(newForm.text, {'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            <input class="btn btn-custom" type="submit" value="{{ 'Send'|trans }}" />
+        </div>
+        {{ form_end(newForm) }}
+        
     </div>
-    {{ form_end(newForm) }}
-    <a class="btn btn-success btn-block" href="/user/{{receiver.id}}">
-        Back to user page
-    </a>
-    
+    <div class="col-md-2"></div>
 {% endblock %}

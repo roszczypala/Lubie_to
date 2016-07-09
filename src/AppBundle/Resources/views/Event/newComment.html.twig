@@ -1,3 +1,7 @@
 {% block middle %}
-    {{ form(comment_form) }}
+    
+    <div class="form-group">{{ form(comment_form) }}</div>
+    <div>
+        <input class="btn btn-custom" type="submit" value="{{ 'Comment'|trans }}" />
+    </div>
 {% endblock %}

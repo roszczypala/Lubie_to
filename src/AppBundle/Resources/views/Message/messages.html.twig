@@ -1,21 +1,7 @@
 {% extends "::base.html.twig" %}
 
-{% block jumbotron %}
-    <h1>Messages</h1>
-    
-    {# Add a notice when message is removed#}
-    {% for flash_message in app.session.flashBag.get('notice') %}
-        <div class="flash-notice">
-            {{ flash_message }}
-        </div>
-
-    {% endfor %}
-    {% for flash_message in app.session.flashBag.get('notice1') %}
-        <div class="flash-notice">
-            {{ flash_message }}
-        </div>
-
-    {% endfor %}
+{% block top %}
+    <h1 class="text-center">Messages</h1>
 {% endblock %}
 
 {% block left %}
@@ -32,8 +18,8 @@
     <th class='text-center'>Date</th>
     {%for message in sentMessages %}
         <tr>
-            <td><a href="/user/{{message.receiver.id}}">{{message.receiver}}</a></td>
-            <td> <a href="/message/{{message.id}}">{{message.title}}</a></td>
+            <td><a class="link" href="/user/{{message.receiver.id}}">{{message.receiver}}</a></td>
+            <td> <a class="link" href="/message/{{message.id}}">{{message.title}}</a></td>
             <td>{{message.date|date("Y-m-d")}}</td>
         </tr>
     {% else %}
@@ -51,8 +37,8 @@
     <th class='text-center'>Delete</th>
     {% for message in receivedMessages %}
         <tr>
-            <td> <a href="/user/{{message.sender.id}}">{{message.sender}}</a></td>
-            <td> <a href="/message/{{message.id}}">{{message.title}}</a></td>
+            <td> <a class="link" href="/user/{{message.sender.id}}">{{message.sender}}</a></td>
+            <td> <a class="link" href="/message/{{message.id}}">{{message.title}}</a></td>
             <td>{{message.date|date("Y-m-d")}}</td>
             <td><a href="/message/delete/{{message.id}}"><span class="glyphicon glyphicon-remove-sign remove"></span></a></td>
         </tr>

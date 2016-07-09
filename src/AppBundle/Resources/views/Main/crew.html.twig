@@ -1,28 +1,47 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}Let's do it{% endblock %}
+{% block title %}{{crew.name}}{% endblock %}
 
-{% block jumbotron %} 
-    <h1>{{crew.name}}</h1>
-    <p>{{crew.description}}</p>
-{% endblock %}
-
-{% block left %}   
+{% block top %}
+    <div class="col-md-2">
     {%if crew.photo is not null%}
-        <img src="{{crew.photo.path}}" width="150" height="150" alt="Image">
-        <br><br>
-       {% if user in crew.users %}
-        <a class="btn btn-success" href="/photo/{{crew.photo.id}}/edit">Update photo</a>
-       {% endif %}
-    {% else %}
-        {% if user in crew.users %}
-        <a class="btn btn-success" href="/photo/crew/create/{{crew.id}}">Add photo</a>
-        {% endif %}
+        <img src="{{crew.photo.path}}" alt="Photo" width="200" height="200" class="left-block"/>
     {% endif %}
+    </div>
+    <div class="col-md-8">
+        <br><br><br><br><br><br>
+        <div class="user-info">
+            {{crew.name|upper}}
+            <br>
+            <div class="btn-group">
+                {% if user in crew.users %}
+                    {%if crew.photo is not null%}
+                        <a class="btn btn-custom" href="/photo/{{crew.photo.id}}/edit">Update photo</a>
+                    {% else %} 
+                        <a class="btn btn-custom" href="/photo/crew/create/{{crew.id}}">Add photo</a>
+                    {% endif %}
+                {% endif %}
+                
+                {% if user in crew.users %}
+                    <a class="btn btn-custom" href="/event/create/{{crew.id}}">Add event</a>
+                {% endif %}
+                {#<a class="btn btn-custom" href="/crew/{{crew.id}}/edit">Edit crew</a>#}
+            </div>
+        </div>
+        
+    </div>
 {% endblock %}
 
 {% block middle %} 
-    <h2 class="text-center">Our events</h2>
+    <p class=" well">{{crew.description}}</p>
+    <div class="text-center">
+    {% if user not in crew.users %}
+        <a class="btn btn-lg btn-custom" href="{{ path('app_crew_addusertocrew', { 'id': crew.id }) }}">JOIN</a>
+    {% else %}
+        <a class="btn btn-lg btn-custom" href="/crew/removeUser/{{crew.id}}">Leave</a>
+    {% endif %}
+    </div>
+    <h2>Our events</h2>
     <div class="list-group">
         {%for event in events%}
             <a class="list-group-item" href="/event/{{event.id}}">
@@ -35,25 +54,12 @@
     </div>
 {% endblock %}    
 {% block middle1 %}     
-    <h2 class="text-center">Our members</h2>
+    <h2>Our members</h2>
     <div class="list-group">
     {%for user in users%}
-        <strong><a class="list-group-item" href="/user/{{user.id}}">{{user.username}}</a></strong>
+        <a class="list-group-item" href="/user/{{user.id}}">{{user.username|capitalize}}</a>
     {% else %}  
         <p>No members yet</p> 
     {%endfor%}
     </div>
-{% endblock %}       
-{% block right %} 
-    <div class="btn-group-vertical">
-        {% if user not in crew.users %}
-            <a class="btn btn-success" href="{{ path('app_crew_addusertocrew', { 'id': crew.id }) }}">JOIN</a>
-        {% else %}
-            <a class="btn btn-success" href="/crew/removeUser/{{crew.id}}">Leave</a>
-        {% endif %}
-        {% if user in crew.users %}
-            <a class="btn btn-success" href="/event/create/{{crew.id}}">Add event</a>
-        {% endif %}
-        {#<a class="btn btn-success" href="/crew/{{crew.id}}/edit">Edit crew</a>#}
-    </div>
-{% endblock %}  
+{% endblock %}        
