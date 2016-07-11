@@ -1,13 +1,9 @@
 {% extends "::base.html.twig" %}
 
-{% block top %}
-    <h2 class="text-center">Update profile</h2>            
+{% block jumbotron %}
+    <h1>Edit</h1>            
 {% endblock %}
 
 {% block middle %}
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        {% include "FOSUserBundle:Profile:edit_content.html.twig" %}   
-    </div>
-    <div class="col-md-2"></div>
+    {% include "FOSUserBundle:Profile:edit_content.html.twig" %}   
 {% endblock %}

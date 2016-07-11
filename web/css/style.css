@@ -79,8 +79,8 @@ img {
 }
 
 .jumbotron {
-    color: #222 !important;
-    background-color: #e1dede !important;
+    color: #dddddc !important;
+    background-color: rgba(60,60,60,0.3) !important;
     opacity: 0.8 !important;
 }
 

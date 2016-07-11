@@ -1,25 +1,7 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'role': 'form' } }) }}
-    <div class="form-group">
-        <label for="form_username">Username:</label>
-        {{ form_widget(form.username, {'attr':{'class':'form-control'}}) }}        
-        <label for="form_email">E-mail:</label>
-        {{ form_widget(form.email, {'attr':{'class':'form-control'}}) }}
-        <label for="form_city">City:</label>
-        {{ form_widget(form.city, {'attr':{'class':'form-control'}}) }}
-        <label for="form_street">Street:</label>
-        {{ form_widget(form.street, {'attr':{'class':'form-control'}}) }}
-        <label for="form_streetNumber">Street number:</label>
-        {{ form_widget(form.streetNumber, {'attr':{'class':'form-control'}}) }}
-        <label for="form_flatNumber">Flat number:</label>
-        {{ form_widget(form.flatNumber, {'attr':{'class':'form-control'}}) }}
-        <label for="form_postcode">Postcode:</label>
-        {{ form_widget(form.postcode, {'attr':{'class':'form-control'}}) }}
-        <label for="form_current_password">Current password:</label>
-        {{ form_widget(form.current_password, {'attr':{'class':'form-control'}}) }}
-        
-    </div>
+{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+    <div class="form-group">{{ form_widget(form) }}</div>
     <div>
         <input class="btn btn-success" type="submit" value="{{ 'Edit'|trans }}" />
     </div>
