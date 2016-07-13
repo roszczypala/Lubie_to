@@ -1,6 +1,5 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}Let's do it{% endblock %}
 {% block top %} 
     <div class="col-md-2">
     {%if user.photo is not null%}
@@ -14,15 +13,15 @@
             <br>
             <div class="btn-group">
                 {%if user.photo is not null%}
-                    <a class="btn btn-custom" href="/photo/{{user.photo.id}}/edit">Update photo</a>
+                    <a class="btn btn-custom" href="/photo/{{user.photo.id}}/edit">Edytuj zdjęcie</a>
                 {% else %}    
-                    <a class="btn btn-custom" href="/photo/user/create/{{user.id}}">Add photo</a>
+                    <a class="btn btn-custom" href="/photo/user/create/{{user.id}}">Dodaj zdjęcie</a>
                 {% endif %}
-                <a class="btn btn-custom" href="/crew/new">Add group</a>
-                <a class="btn btn-custom" href="/profile/edit">Update profile</a>
-                <a class="btn btn-custom" href="/message">Messages</a>
+                <a class="btn btn-custom" href="/crew/new">Dodaj grupę</a>
+                <a class="btn btn-custom" href="/profile/edit">Edytuj profil</a>
+                <a class="btn btn-custom" href="/message">Wiadomości</a>
                 {% if user.username == 'Admin' %}
-                    <a class="btn btn-custom" href="/admin/index">Admin panel</a>
+                    <a class="btn btn-custom" href="/admin/index">Panel administracyjny</a>
                 {% endif %}  
             </div>
         </div>
@@ -47,17 +46,17 @@
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXhtL_yLZra6mzoFA7P3thVJyAw7w4vmg&callback=initMap">
     </script>#}
 
-    <h3 class="text-center">My groups</h3>
+    <h3 class="text-center">Moje grupy</h3>
     <div class="list-group">
     {%for crew in crews%}
         <a class="list-group-item" href="/crew/{{crew.id}}">{{crew.name}}</a>
     {% else %}  
-        <p>No crews yet</p>     
+        <p>Nie należysz do żadnej grupy</p>     
     {%endfor%}
     </div>
 {% endblock %}
 {% block middle1 %} 
-    <h3 class="text-center">My events</h3>
+    <h3 class="text-center">Moje eventy</h3>
     <div class="list-group">
     {%for event in events%}
         <a class="list-group-item" href="/event/{{event.id}}">
@@ -65,7 +64,7 @@
             {{event.date | date('Y-m-d H:i')}}
         </a>
     {% else %}  
-        <p>No events yet</p>     
+        <p>Nie dołączyłeś do żadnego eventu</p>     
     {%endfor%}
 {% endblock %} 
             

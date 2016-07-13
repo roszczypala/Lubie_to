@@ -1,6 +1,5 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}Admin panel{% endblock %}
 
 {% block top %}
     <div class="col-md-2">
@@ -9,13 +8,13 @@
     <div class="col-md-8">
         <br><br><br><br><br><br>
         <div class="user-info">
-            <p>Admin panel</p>           
+            <p>Panel administracyjny</p>            
             <div class="btn-group">     
-                <a class="btn btn-custom" href="/index">User page</a>
-                <a class="btn btn-custom" href="/admin/index">Main</a>
-                <a class="btn btn-custom" href="/admin/crews">All active groups</a>
-                <a class="btn btn-custom" href="/admin/events">All active events</a>
-                <a class="btn btn-custom" href="/admin/users">All users</a>
+                <a class="btn btn-custom" href="/index">Strona użytkownika</a>
+                <a class="btn btn-custom" href="/admin/index">Index</a>
+                <a class="btn btn-custom" href="/admin/crews">Zaakceptowane grupy</a>
+                <a class="btn btn-custom" href="/admin/events">Zaakceptowane eventy</a>
+                <a class="btn btn-custom" href="/admin/users">Wszyscy użytkownicy</a>
             </div>
         </div>     
     </div>
@@ -24,12 +23,12 @@
 
 
 {% block middle %}
-    <h1>All events:</h1>
+    <h1>Wszystkie eventy:</h1>
     <table class="table table-hover">
-        <th class='text-center'>Name</th>
-        <th class='text-center'>Description</th>
-        <th class='text-center'>Accepted</th>
-        <th class="text-center">Delete</th>
+        <th class='text-center'>Nazwa</th>
+        <th class='text-center'>Opis</th>
+        <th class='text-center'>Zaakceptowany</th>
+        <th class="text-center">Usuń</th>
 
 
             {% for event in events %}
@@ -40,7 +39,7 @@
                     <td><a href="/admin/event/remove/{{event.id}}"><span class="glyphicon glyphicon-remove remove"></span></a></td>
                 </tr>
             {% else %}
-                <p>No events</p>
+                <p>Brak eventów</p>
             {% endfor %}
 
     </table>

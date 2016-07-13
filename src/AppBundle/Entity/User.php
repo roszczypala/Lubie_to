@@ -157,6 +157,19 @@ class User extends BaseUser
     {
         return $this->crews;
     }
+    
+    public function getActiveCrews() {
+        
+        $allCrews = $this->crews;
+        $activeCrews = [];
+        foreach ($allCrews as $crew) {
+            if($crew->getAccepted() == 1) {
+                $activeCrews[] = $crew;
+            }
+        }
+        
+        return $activeCrews;
+    }
 
 
     /**
@@ -223,6 +236,19 @@ class User extends BaseUser
     public function getEvents()
     {
         return $this->events;
+    }
+    
+    public function getActiveEvents() {
+        
+        $allEvents = $this->events;
+        $activeEvents = [];
+        foreach ($allEvents as $event) {
+            if($event->getAccepted() == 1) {
+                $activeEvents[] = $event;
+            }
+        }
+        
+        return $activeEvents;
     }
 
     /**

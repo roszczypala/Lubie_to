@@ -3,14 +3,14 @@
 {% block top %}
     <h2 class="text-center">
         {% if message.sender != loggedUser %}
-            Message from: {{message.sender.username|capitalize}}
+            Wiadomość od: {{message.sender.username|capitalize}}
         {% else %}
-            Message to: {{message.receiver.username|capitalize}}
+            Wiadomość do: {{message.receiver.username|capitalize}}
         {% endif %}    
     </h2>
     <a class="btn btn-custom" href="{{ path('message') }}">
         <span class="glyphicon glyphicon-arrow-left"></span>
-        Back to the list
+        Powrót do listy
     </a>
 {% endblock %}    
 
@@ -20,6 +20,6 @@
     <p>{{ message.date|date('Y-m-d H:i:s') }}</p>
  
     {% if message.sender != loggedUser %}
-        <a class="btn btn-custom" href="/message/new/{{message.sender.id}}">Reply</a>
+        <a class="btn btn-custom" href="/message/new/{{message.sender.id}}">Odpowiedz</a>
     {% endif %}    
 {% endblock %}

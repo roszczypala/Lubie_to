@@ -1,7 +1,5 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}Admin panel{% endblock %}
-
 {% block top %}
     <div class="col-md-2">
         <img src="{{asset('img/admin.png')}}" alt="Photo" width="200" height="200" class="left-block"/>
@@ -9,13 +7,13 @@
     <div class="col-md-8">
         <br><br><br><br><br><br>
         <div class="user-info">
-            <p>Admin panel</p>           
+            <p>Panel administracyjny</p>            
             <div class="btn-group">     
-                <a class="btn btn-custom" href="/index">User page</a>
-                <a class="btn btn-custom" href="/admin/index">Main</a>
-                <a class="btn btn-custom" href="/admin/crews">All active groups</a>
-                <a class="btn btn-custom" href="/admin/events">All active events</a>
-                <a class="btn btn-custom" href="/admin/users">All users</a>
+                <a class="btn btn-custom" href="/index">Strona użytkownika</a>
+                <a class="btn btn-custom" href="/admin/index">Index</a>
+                <a class="btn btn-custom" href="/admin/crews">Zaakceptowane grupy</a>
+                <a class="btn btn-custom" href="/admin/events">Zaakceptowane eventy</a>
+                <a class="btn btn-custom" href="/admin/users">Wszyscy użytkownicy</a>
             </div>
         </div>     
     </div>
@@ -23,7 +21,7 @@
 {% endblock %}
 
 {% block middle %}
-    <h3>Event deleted</h3>
-    <a class="btn btn-custom btn-block" href="/admin/index">Back</a>
+    <h3>Event usunięty</h3>
+    <a class="btn btn-custom btn-block" href="/admin/index">Powrót</a>
 {% endblock %}
 

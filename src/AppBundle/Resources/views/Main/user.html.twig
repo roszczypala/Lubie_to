@@ -14,9 +14,9 @@
             <p class="small">{{user.email}}</p>
             <div class="btn-group">
                 {% if user != loggedUser %}
-                    <a class="btn btn-custom" href="/message/new/{{user.id}}">Message</a>
+                    <a class="btn btn-custom" href="/message/new/{{user.id}}">Wiadomość</a>
                 {% else %}
-                    <a class="btn btn-custom" href="/profile/edit">Update profile</a>
+                    <a class="btn btn-custom" href="/profile/edit">Edytuj profil</a>
                 {% endif %}
             </div>
         </div>
@@ -28,7 +28,7 @@
 
 
 {% block middle %}                    
-    <h3 class="text-center">Crews</h3>
+    <h3 class="text-center">Grupy</h3>
     <div class="list-group">
     {%for crew in crews%}
         <a class="list-group-item" href="/crew/{{crew.id}}">{{crew.name}}</a>
@@ -37,7 +37,7 @@
 {% endblock %}
 
 {% block middle1 %} 
-    <h3 class="text-center">Events</h3>
+    <h3 class="text-center">Eventy</h3>
     <div class="list-group">
     {%for event in events%}
         <a class="list-group-item" href="/event/{{event.id}}">

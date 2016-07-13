@@ -2,7 +2,7 @@
 
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'role': 'form'}}) }}
     <div class="form-group">
-        <label for="form_username">Username:</label>
+        <label for="form_username">Nazwa użytkownika:</label>
         {{ form_widget(form.username, {'attr':{'class':'form-control'}}) }}
     </div>
     <div class="form-group">
@@ -10,16 +10,16 @@
         {{ form_widget(form.email, {'attr':{'class':'form-control'}}) }}
     </div>
     <div class="form-group">
-        <label>Password:
+        <label>Hasło:
         {{ form_widget(form.plainPassword.first, {'attr':{'class':'form-control'}}) }}
         </label>
     </div>
     <div class="form-group">
-        <label>Repeat password:
+        <label>Powtórz hasło:
         {{ form_widget(form.plainPassword.second, {'attr':{'class':'form-control'}}) }}
         </label>
     </div>
     <div>
-        <input class="btn btn-custom" type="submit" value="{{ 'Register'|trans }}" />
+        <input class="btn btn-custom" type="submit" value="{{ 'Zarejestruj się'|trans }}" />
     </div>
 {{ form_end(form) }}

@@ -1,7 +1,5 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}{{event.name}}{% endblock %}
-
 {% block top %} 
     <div class="col-md-2">
     {%if event.photo is not null%}
@@ -16,17 +14,17 @@
             <span class="small">{{event.date | date('Y-m-d H:i')}}</span>
             <br>           
             <div class="btn-group">     
-                <a class="btn btn-custom" href="/crew/{{event.crew.id}}">Return to group site</a>  
+                <a class="btn btn-custom" href="/crew/{{event.crew.id}}">Wróć do strony grupy</a>  
                 {% if loggedUser in event.users %}
                     {%if event.photo is not null%}
-                        <a class="btn btn-custom" href="/photo/{{event.photo.id}}/edit">Update photo</a>
+                        <a class="btn btn-custom" href="/photo/{{event.photo.id}}/edit">Edytuj zdjęcie</a>
                     {% else %} 
-                        <a class="btn btn-custom" href="/photo/event/create/{{event.id}}">Add photo</a>
+                        <a class="btn btn-custom" href="/photo/event/create/{{event.id}}">Dodaj zdjęcie</a>
                     {% endif %}
                 {% endif %}
                 
                 {% if loggedUser.id == event.eventAdmin.id %}
-                    <a class="btn btn-custom" href="/event/{{event.id}}/edit">Edit event info</a>
+                    <a class="btn btn-custom" href="/event/{{event.id}}/edit">Edytuj event</a>
                 {% endif %}  
             </div>
         </div>
@@ -38,12 +36,12 @@
     <p class="well">
         {{event.description}}
         <br>
-        <strong>Event admin: <a class="link" href="/user/{{event.eventAdmin.id}}">{{event.eventAdmin.username}}</a></strong>
+        <strong>Organizator: <a class="link" href="/user/{{event.eventAdmin.id}}">{{event.eventAdmin.username}}</a></strong>
     </p>
     {% if loggedUser not in event.users %}
-        <a class="btn btn-custom btn-lg" href="{{ path('app_event_addusertoevent', { 'id': event.id }) }}">JOIN</a>
+        <a class="btn btn-custom btn-lg" href="{{ path('app_event_addusertoevent', { 'id': event.id }) }}">Dołącz</a>
     {% else %}
-        <a class="btn btn-custom btn-lg" href="/event/removeUser/{{event.id}}">Leave</a>
+        <a class="btn btn-custom btn-lg" href="/event/removeUser/{{event.id}}">Opuść</a>
     {% endif %}
     <div id="map" class="center-block"></div>
     <script>
@@ -67,29 +65,28 @@
     </script>
     <h4>{{event.city}}, ul. {{event.street}} {{event.streetNumber}}/{% if event.flatNumber is not null %}{{event.flatNumber}}{% endif %}</h4>
     
-    <h3>Who joined</h3>
+    <h3>Dołączyli</h3>
     <div class="list-group">
     {%for user in users%}
         <strong><a class="list-group-item" href="/user/{{user.id}}">{{user.username}}</a></strong>
     {% else %}  
-        <p>Noone is comming for now</p>  
+        <p>Nikt nie dołączył</p>  
     {%endfor%}
     </div>
     
     {% if loggedUser in event.users %}
-        <h3>Leave a comment</h3>
-        <p>{{form(comment_form)}}</p>
+        <h3>Zostaw komentarz</h3>
+        <p>{{form(comment_form.text)}}</p>
+        <input type="submit" value="Skomentuj" class="btn btn-custom btn-sm">
     {% else %}
-       <h3>Comments</h3> 
+       <h3>Komentarze</h3> 
     {% endif %}
     <ul class="list-group">
         {% for comment in event.comments %}
             <li class="list-group-item">
                 <p class="list-group-item-heading">{{comment.text}}<p> 
                 <p class="list-group-item-text"><strong> {{comment.user.username}}</strong> <span class="small">{{comment.date|date('Y-m-d H:i:s')}}</span></p>
-            </li>    
-        {% else %}  
-            <p>No comments</p>        
+            </li>          
         {% endfor %}
     </ul>
 {% endblock %}

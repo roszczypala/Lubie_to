@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}Join Us{% endblock %}</title>
+        <title>{% block title %}MeetUs{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
@@ -18,19 +18,19 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {%include "FOSUserBundle::layout.html.twig"%}
+        <div class="hidden">{%include "FOSUserBundle::layout.html.twig"%}</div>
         {% block navbar %}
          <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
               <div class="navbar-header">
-                  <a class="navbar-brand" href="/index">JoinUs</a>
+                  <a class="navbar-brand" href="/index">MeetUs</a>
               </div>
               <ul class="nav navbar-nav">
-                <li><a href="/index">Home</a></li>
-                <li><a href="/crew">All groups</a></li>
+                <li><a href="/index">Strona główna</a></li>
+                <li><a href="/crew">Wszystkie grupy</a></li>
               </ul>      
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Wyloguj się</a></li>
               </ul>
             </div>
           </nav>

@@ -1,6 +1,5 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}Admin panel{% endblock %}
 
 {% block top %}
     <div class="col-md-2">
@@ -9,13 +8,13 @@
     <div class="col-md-8">
         <br><br><br><br><br><br>
         <div class="user-info">
-            <p>Admin panel</p>           
+            <p>Panel administracyjny</p>           
             <div class="btn-group">     
-                <a class="btn btn-custom" href="/index">User page</a>
-                <a class="btn btn-custom" href="/admin/index">Main</a>
-                <a class="btn btn-custom" href="/admin/crews">All active groups</a>
-                <a class="btn btn-custom" href="/admin/events">All active events</a>
-                <a class="btn btn-custom" href="/admin/users">All users</a>
+                <a class="btn btn-custom" href="/index">Strona użytkownika</a>
+                <a class="btn btn-custom" href="/admin/index">Index</a>
+                <a class="btn btn-custom" href="/admin/crews">Zaakceptowane grupy</a>
+                <a class="btn btn-custom" href="/admin/events">Zaakceptowane eventy</a>
+                <a class="btn btn-custom" href="/admin/users">Wszyscy użytkownicy</a>
             </div>
         </div>     
     </div>
@@ -24,11 +23,11 @@
 
 
 {% block middle %}
-    <h1>All users:</h1>
+    <h1>Wszyscy użytkownicy:</h1>
     <table class="table table-hover">
-        <th class='text-center'>Username</th>
-        <th class='text-center'>Email</th>
-        <th class="text-center">Delete</th>
+        <th class='text-center'>Nazwa użytkownika</th>
+        <th class='text-center'>E-mail</th>
+        <th class="text-center">Usuń</th>
 
 
             {% for user in users %}

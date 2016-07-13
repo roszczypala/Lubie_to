@@ -6,17 +6,17 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
        <div class="container-fluid">
          <div class="navbar-header">
-           <a class="navbar-brand" href="/">JoinUs</a>
+           <a class="navbar-brand" href="/">MeetUs</a>
          </div>
          <ul class="nav navbar-nav navbar-right">
-           <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+           <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Zarejestruj się</a></li>
          </ul>
        </div>
     </nav>
 {% endblock %}
 
 {% block top %}
-    <h2 class="text-center">Log in to continue</h2>             
+    <h2 class="text-center">Logowanie</h2>             
 {% endblock %}
 
 {% block middle %}
@@ -30,12 +30,12 @@
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
         <div class="form-group">
-            <label for="username">Username: </label>
+            <label for="username">Nazwa użytkownika: </label>
             <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
         </div>
 
         <div class="form-group">
-        <label for="password">Password: </label>
+        <label for="password">Hasło: </label>
         <input class="form-control" type="password" id="password" name="_password" required="required" />
         </div>
 
