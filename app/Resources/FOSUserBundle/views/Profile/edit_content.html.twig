@@ -2,25 +2,25 @@
 
 {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'role': 'form' } }) }}
     <div class="form-group">
-        <label for="form_username">Username:</label>
+        <label for="form_username">Nazwa użytkownika:</label>
         {{ form_widget(form.username, {'attr':{'class':'form-control'}}) }}        
         <label for="form_email">E-mail:</label>
         {{ form_widget(form.email, {'attr':{'class':'form-control'}}) }}
-        <label for="form_city">City:</label>
+        <label for="form_city">Miasto:</label>
         {{ form_widget(form.city, {'attr':{'class':'form-control'}}) }}
-        <label for="form_street">Street:</label>
+        <label for="form_street">Ulica:</label>
         {{ form_widget(form.street, {'attr':{'class':'form-control'}}) }}
-        <label for="form_streetNumber">Street number:</label>
+        <label for="form_streetNumber">Numer domu:</label>
         {{ form_widget(form.streetNumber, {'attr':{'class':'form-control'}}) }}
-        <label for="form_flatNumber">Flat number:</label>
+        <label for="form_flatNumber">Numer mieszkania:</label>
         {{ form_widget(form.flatNumber, {'attr':{'class':'form-control'}}) }}
-        <label for="form_postcode">Postcode:</label>
+        <label for="form_postcode">Kod pocztowy:</label>
         {{ form_widget(form.postcode, {'attr':{'class':'form-control'}}) }}
-        <label for="form_current_password">Current password:</label>
+        <label for="form_current_password">Aktualne hasło:</label>
         {{ form_widget(form.current_password, {'attr':{'class':'form-control'}}) }}
         
     </div>
     <div>
-        <input class="btn btn-success" type="submit" value="{{ 'Edit'|trans }}" />
+        <input class="btn btn-success" type="submit" value="{{ 'Edytuj'|trans }}" />
     </div>
 {{ form_end(form) }}

@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block top %}
-    <h1 class="text-center">Update photo</h1>
+    <h1 class="text-center">Edytuj zdjęcie</h1>
 {% endblock %}    
 
 {% block middle -%}
@@ -9,7 +9,7 @@
     <div class="col-md-8">
     {{ form_start(edit_form, {'attr':{'role':'form'}}) }}
         <div class="form-group">{{ form_widget(edit_form.path, {'attr':{'class':'form-control'}}) }}</div>
-        <input class="btn btn-custom" type="submit" value="{{ 'Update'|trans }}" />
+        <input class="btn btn-custom" type="submit" value="{{ 'Edytuj'|trans }}" />
 
     {{ form_end(edit_form) }}  
     </div>

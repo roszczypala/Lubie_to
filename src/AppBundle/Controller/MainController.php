@@ -35,8 +35,8 @@ class MainController extends Controller {
                         ->getToken()
                         ->getUser());
 
-        $crews = $user->getCrews();
-        $events = $user->getEvents();
+        $crews = $user->getActiveCrews();
+        $events = $user->getActiveEvents();
 
         return ['crews' => $crews,
             'events' => $events,
@@ -56,8 +56,8 @@ class MainController extends Controller {
                         ->getToken()
                         ->getUser());
 
-        $crews = $user->getCrews();
-        $events = $user->getEvents();
+        $crews = $user->getActiveCrews();
+        $events = $user->getActiveEvents();
         
 
         return ['events' => $events,

@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block top %}
-    <h1 class="text-center">Add event</h1>
+    <h1 class="text-center">Dodaj event</h1>
 {% endblock %} 
 
 {% block middle -%}
@@ -11,44 +11,44 @@
     {{ form_start(form, {'attr':{'role':'form'}}) }}
    
     <div class="form-group">
-        <label for="form_name">Name: </label>
+        <label for="form_name">Nazwa: </label>
 
         {{ form_widget(form.name, {'attr':{'class':'form-control'}})}}
     </div>
     <div class="form-group">
-        <label for="form_description">Description: </label>
+        <label for="form_description">Opis: </label>
 
         {{ form_widget(form.description, {'attr':{'class':'form-control'}})}}
     </div>
     <div class="form-group">
-        <label for="form_date">Date: </label>
+        <label for="form_date">Data: </label>
         {{ form_widget(form.date)}}
     </div>
     <div class="form-group">
-        <label for="form_city">City: </label>
+        <label for="form_city">Miasto: </label>
         {{ form_widget(form.city, {'attr':{'class':'form-control'}})}}
     </div>
    <div class="form-group">
-        <label for="form_street">Street: </label>
+        <label for="form_street">Ulica: </label>
         {{ form_widget(form.street, {'attr':{'class':'form-control'}})}}
     </div>
     <div class="form-group">
-        <label for="form_streetNumber">Street number: </label>
+        <label for="form_streetNumber">Numer domu: </label>
         {{ form_widget(form.streetNumber, {'attr':{'class':'form-control'}})}}
     </div>
     <div class="form-group">
-        <label for="form_flatNumber">Flat number: </label>
+        <label for="form_flatNumber">Numer mieszkania: </label>
         {{ form_widget(form.flatNumber, {'attr':{'class':'form-control'}})}}
     </div>
     <div class="form-group">
-        <label for="form_postcode">Postcode: </label>
+        <label for="form_postcode">Kod pocztowy: </label>
         {{ form_widget(form.postcode, {'attr':{'class':'form-control'}})}}
     </div>
     <div class="form-group">
-        <label for="form_eventAdmin">Event admin: </label>
+        <label for="form_eventAdmin">Organizator: </label>
         {{ form_widget(form.eventAdmin, {'attr':{'class':'form-control'}})}}
     </div>
-    <input class="btn btn-custom" type="submit" value="{{ 'Add'|trans }}" />
+    <input class="btn btn-custom" type="submit" value="{{ 'Dodaj'|trans }}" />
     
     {{ form_end(form) }}
     </div>

@@ -1,17 +1,15 @@
-{% extends '::base.html.twig' %}
-
-{% block title %}All groups{% endblock %}   
+{% extends '::base.html.twig' %}  
 
 {% block top %}
-    <h1 class="text-center">All groups</h1>
+    <h1 class="text-center">Wszystkie grupy</h1>
 {% endblock %}    
 {% block middle -%}
     <table class="table table-hover text-center">
         <thead>
             <tr>
-                <th class="text-center">Name</th>
-                <th class="text-center">Description</th>
-                <th class="text-center">Join/Leave</th>
+                <th class="text-center">Nazwa</th>
+                <th class="text-center">Opis</th>
+                <th class="text-center">Dołącz/Opuść</th>
             </tr>
         </thead>
         <tbody>
@@ -21,9 +19,9 @@
                 <td>{{ entity.description }}</td>
                 <td>
                     {% if user not in entity.users %}
-                        <a href="{{ path('app_crew_addusertocrew', { 'id': entity.id }) }}" data-toggle="tooltip" title="Join"><span class="glyphicon glyphicon-ok accept"></span></a>
+                        <a href="{{ path('app_crew_addusertocrew', { 'id': entity.id }) }}" data-toggle="tooltip" title="Dołącz"><span class="glyphicon glyphicon-ok accept"></span></a>
                     {% else %}
-                        <a href="/crew/removeUser/{{entity.id}}" data-toggle="tooltip" title="Leave"><span class="glyphicon glyphicon-remove remove"></span></a>
+                        <a href="/crew/removeUser/{{entity.id}}" data-toggle="tooltip" title="Opuść"><span class="glyphicon glyphicon-remove remove"></span></a>
                     {% endif %}
                 </td>
             </tr>
@@ -37,7 +35,7 @@ $(document).ready(function(){
     </table>
         <p class="text-center">
             <a class="btn btn-custom btn-block" href="{{ path('crew_new') }}">
-                Add
+                Dodaj nową grupę
             </a>
         </p>        
     {% endblock %}

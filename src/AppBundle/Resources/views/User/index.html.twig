@@ -9,13 +9,13 @@
     <div class="col-md-8">
         <br><br><br><br><br><br>
         <div class="user-info">
-            <p>Admin panel</p>           
+            <p>Panel administracyjny</p>            
             <div class="btn-group">     
-                <a class="btn btn-custom" href="/index">User page</a>
-                <a class="btn btn-custom" href="/admin/index">Main</a>
-                <a class="btn btn-custom" href="/admin/crews">All active groups</a>
-                <a class="btn btn-custom" href="/admin/events">All active events</a>
-                <a class="btn btn-custom" href="/admin/users">All users</a>
+                <a class="btn btn-custom" href="/index">Strona użytkownika</a>
+                <a class="btn btn-custom" href="/admin/index">Index</a>
+                <a class="btn btn-custom" href="/admin/crews">Zaakceptowane grupy</a>
+                <a class="btn btn-custom" href="/admin/events">Zaakceptowane eventy</a>
+                <a class="btn btn-custom" href="/admin/users">Wszyscy użytkownicy</a>
             </div>
         </div>     
     </div>
@@ -24,14 +24,14 @@
 
 
 {% block middle %}
-    <h3>Events to accept</h3>
+    <h3>Eventy do zaakceptowania</h3>
     <table class="table table-hover">
-    <th class='text-center'>Name</th>
-    <th class='text-center'>Description</th>
-    <th class='text-center'>Accepted</th>
-    <th class='text-center'>Accept</th>
-    <th class='text-center'>Remove</th>
-
+    <th class='text-center'>Nazwa</th>
+    <th class='text-center'>Opis</th>
+    <th class='text-center'>Zaakceptowany</th>
+    <th class='text-center'>Akceptuj</th>
+    <th class="text-center">Usuń</th>
+   
         {% for event in events %}
             <tr>
                 <td>{{event.name}}</td>
@@ -42,17 +42,19 @@
             </tr>
 
             {% else  %}
-            <p>No events to accept</p>
+            <p>Brak eventów do zaakceptowania</p>
         {% endfor %}
 
         </table>
 {% endblock %}
 {% block middle1 %}
-        <h3>Groups to accept</h3>
+        <h3>Grupy do zaakceptowania</h3>
         <table class="table table-hover">
-        <th class='text-center'>Name</th>
-        <th class='text-center'>Description</th>
-        <th class='text-center'>Accepted</th>
+        <th class='text-center'>Nazwa</th>
+        <th class='text-center'>Opis</th>
+        <th class='text-center'>Zaakceptowana</th>
+        <th class='text-center'>Akceptuj</th>
+        <th class="text-center">Usuń</th>
 
 
         {% for crew in crews %}
@@ -64,6 +66,6 @@
                 <td><a href="/admin/crew/remove/{{crew.id}}"><span class="glyphicon glyphicon-remove remove"></span></a></td> 
             </tr>
         {% else  %}
-            <p>No groups to accept</p>
+            <p>Brak grup do zaakceptowania</p>
         {% endfor %}
 {% endblock %}

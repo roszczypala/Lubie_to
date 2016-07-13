@@ -2,8 +2,8 @@
 
 {% block middle %}
     <div class="alert alert-success">
-        <h2>Profile updated</h2>
+        <h2>Aktualizacja profilu przebiegła pomyślnie</h2>
     </div>
-   {% include "FOSUserBundle:Profile:show_content.html.twig" %} 
-   <a class="btn btn-custom btn-block" href="/index">Return to homepage</a>
+    <div class="hidden">{% include "FOSUserBundle:Profile:show_content.html.twig" %}</div> 
+   <a class="btn btn-custom btn-block" href="/index">Powrót do strony głównej</a>
 {% endblock middle %}

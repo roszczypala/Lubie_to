@@ -1,7 +1,5 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}{{crew.name}}{% endblock %}
-
 {% block top %}
     <div class="col-md-2">
     {%if crew.photo is not null%}
@@ -16,14 +14,14 @@
             <div class="btn-group">
                 {% if user in crew.users %}
                     {%if crew.photo is not null%}
-                        <a class="btn btn-custom" href="/photo/{{crew.photo.id}}/edit">Update photo</a>
+                        <a class="btn btn-custom" href="/photo/{{crew.photo.id}}/edit">Edytuj zdjęcie</a>
                     {% else %} 
-                        <a class="btn btn-custom" href="/photo/crew/create/{{crew.id}}">Add photo</a>
+                        <a class="btn btn-custom" href="/photo/crew/create/{{crew.id}}">Dodaj zdjęcie</a>
                     {% endif %}
                 {% endif %}
                 
                 {% if user in crew.users %}
-                    <a class="btn btn-custom" href="/event/create/{{crew.id}}">Add event</a>
+                    <a class="btn btn-custom" href="/event/create/{{crew.id}}">Dodaj event</a>
                 {% endif %}
                 {#<a class="btn btn-custom" href="/crew/{{crew.id}}/edit">Edit crew</a>#}
             </div>
@@ -36,12 +34,12 @@
     <p class=" well">{{crew.description}}</p>
     <div class="text-center">
     {% if user not in crew.users %}
-        <a class="btn btn-lg btn-custom" href="{{ path('app_crew_addusertocrew', { 'id': crew.id }) }}">JOIN</a>
+        <a class="btn btn-lg btn-custom" href="{{ path('app_crew_addusertocrew', { 'id': crew.id }) }}">Dołącz</a>
     {% else %}
-        <a class="btn btn-lg btn-custom" href="/crew/removeUser/{{crew.id}}">Leave</a>
+        <a class="btn btn-lg btn-custom" href="/crew/removeUser/{{crew.id}}">Opuść</a>
     {% endif %}
     </div>
-    <h2>Our events</h2>
+    <h2>Nasze eventy</h2>
     <div class="list-group">
         {%for event in events%}
             <a class="list-group-item" href="/event/{{event.id}}">
@@ -49,17 +47,17 @@
                 {{event.date | date('Y-m-d H:i')}}
             </a>
         {% else %}  
-            <p>No events yet</p> 
+            <p>Brak eventów</p> 
         {%endfor%}
     </div>
 {% endblock %}    
 {% block middle1 %}     
-    <h2>Our members</h2>
+    <h2>Członkowie grupy</h2>
     <div class="list-group">
     {%for user in users%}
         <a class="list-group-item" href="/user/{{user.id}}">{{user.username|capitalize}}</a>
     {% else %}  
-        <p>No members yet</p> 
+        <p>Nikt nie dołączył. Bądź pierwszy!</p> 
     {%endfor%}
     </div>
 {% endblock %}        
