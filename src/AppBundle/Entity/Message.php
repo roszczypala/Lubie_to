@@ -24,14 +24,16 @@ class Message
 
     /**
      * @var string
-     *
+     * 
+     * @Assert\NotBlank(message="Musisz dodać tytuł")
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
      * @var string
-     *
+     * 
+     * @Assert\NotBlank(message="Musisz dodać treść wiadomości")
      * @ORM\Column(name="text", type="text")
      */
     private $text;

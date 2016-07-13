@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Event
@@ -26,6 +27,8 @@ class Event
     /**
      * @var string
      *
+     * @Assert\NotBlank(message="Musisz wpisać nazwę eventu")
+     * @Assert\Length(min=5, minMessage="Nazwa eventu musi mieć co najmniej 5 znaków")
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
@@ -33,6 +36,8 @@ class Event
     /**
      * @var string
      *
+     * @Assert\NotBlank(message="Musisz dodać opis eventu")
+     * @Assert\Length(min=60, minMessage="Opis eventu musi mieć co najmniej 60 znaków")
      * @ORM\Column(name="description", type="text")
      */
     private $description;
@@ -47,6 +52,7 @@ class Event
     /**
      * @var \DateTime
      *
+     * @Assert\NotBlank(message="Musisz dodać datę eventu")
      * @ORM\Column(name="date", type="datetime")
      */
     
@@ -56,6 +62,7 @@ class Event
     /**
      * @var string
      *
+     * @Assert\NotBlank(message="Musisz dodać miasto")
      * @ORM\Column(name="city", type="string", length=255, nullable = true)
      */
     private $city;
@@ -63,6 +70,7 @@ class Event
     /**
      * @var string
      *
+     * @Assert\NotBlank(message="Musisz dodać ulicę")
      * @ORM\Column(name="street", type="string", length=255, nullable = true)
      */
     private $street;
@@ -70,20 +78,22 @@ class Event
     /**
      * @var string
      *
+     * @Assert\NotBlank(message="Musisz dodać numer domu")
      * @ORM\Column(name="street_number", type="string", length=255, nullable = true)
      */
     private $streetNumber;
 
     /**
      * @var string
-     *
+     * @Assert\Regex("#[\d]+[a-zA-z]*#")
      * @ORM\Column(name="flat_number", type="string", length=255, nullable = true)
      */
     private $flatNumber;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Musisz dodać kod pocztowy")
+     * @Assert\Regex("#[0-9][0-9]-[0-9][0-9][0-9]#")
      * @ORM\Column(name="postcode", type="string", length=255, nullable = true)
      */
     private $postcode;

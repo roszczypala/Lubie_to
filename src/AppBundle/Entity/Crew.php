@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Crew
@@ -26,6 +27,8 @@ class Crew
     /**
      * @var string
      *
+     * @Assert\NotBlank(message="Musisz wpisać nazwę grupy")
+     * @Assert\Length(min=5, minMessage="Nazwa grupy musi mieć co najmniej 5 znaków")
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
@@ -33,6 +36,7 @@ class Crew
     /**
      * @var string
      *
+     * @Assert\Length(min=60, minMessage="Opis eventu musi mieć co najmniej 60 znaków")
      * @ORM\Column(name="description", type="text")
      */
     private $description;
