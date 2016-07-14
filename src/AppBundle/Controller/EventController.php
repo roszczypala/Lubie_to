@@ -171,9 +171,11 @@ class EventController extends Controller
     
     public function getLocalization($city, $streetNumber, $street){
 
-        $city = "+".$city;
+        $cityArr = explode(' ', $city);
+        $city = '+'.implode('_', $cityArr);
+        $streetArr = explode(" ", $street);
+        $street = "+".implode("_", $streetArr);
         $streetNumber = "+".$streetNumber;
-        $street = "+".$street;
 
         $jsonContent = file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?address=".$streetNumber.$street.$city.".&key=AIzaSyBXhtL_yLZra6mzoFA7P3thVJyAw7w4vmg");
         $arrayJSON = json_decode($jsonContent, true);

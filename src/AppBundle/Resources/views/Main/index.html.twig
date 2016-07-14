@@ -13,7 +13,7 @@
             <br>
             <div class="btn-group">
                 {%if user.photo is not null%}
-                    <a class="btn btn-custom" href="/photo/{{user.photo.id}}/edit">Edytuj zdjęcie</a>
+                    <a class="btn btn-custom" href="/photo/user/{{user.photo.id}}">Edytuj zdjęcie</a>
                 {% else %}    
                     <a class="btn btn-custom" href="/photo/user/create/{{user.id}}">Dodaj zdjęcie</a>
                 {% endif %}

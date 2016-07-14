@@ -16,6 +16,11 @@
                 {% if user != loggedUser %}
                     <a class="btn btn-custom" href="/message/new/{{user.id}}">Wiadomość</a>
                 {% else %}
+                    {%if user.photo is not null%}
+                        <a class="btn btn-custom" href="/photo/user/{{user.photo.id}}">Edytuj zdjęcie</a>
+                    {% else %}    
+                        <a class="btn btn-custom" href="/photo/user/create/{{user.id}}">Dodaj zdjęcie</a>
+                    {% endif %}
                     <a class="btn btn-custom" href="/profile/edit">Edytuj profil</a>
                 {% endif %}
             </div>

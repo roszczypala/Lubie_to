@@ -17,7 +17,7 @@
                 <a class="btn btn-custom" href="/crew/{{event.crew.id}}">Wróć do strony grupy</a>  
                 {% if loggedUser in event.users %}
                     {%if event.photo is not null%}
-                        <a class="btn btn-custom" href="/photo/{{event.photo.id}}/edit">Edytuj zdjęcie</a>
+                        <a class="btn btn-custom" href="/photo/event/{{event.photo.id}}">Edytuj zdjęcie</a>
                     {% else %} 
                         <a class="btn btn-custom" href="/photo/event/create/{{event.id}}">Dodaj zdjęcie</a>
                     {% endif %}
@@ -63,7 +63,7 @@
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXhtL_yLZra6mzoFA7P3thVJyAw7w4vmg&callback=initMap">
     </script>
-    <h4>{{event.city}}, ul. {{event.street}} {{event.streetNumber}}/{% if event.flatNumber is not null %}{{event.flatNumber}}{% endif %}</h4>
+    <h4>{{event.city}}, ul. {{event.street}} {{event.streetNumber}}{% if event.flatNumber is not null %}/{{event.flatNumber}}{% endif %}</h4>
     
     <h3>Dołączyli</h3>
     <div class="list-group">
