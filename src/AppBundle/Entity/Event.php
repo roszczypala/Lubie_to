@@ -85,7 +85,7 @@ class Event
 
     /**
      * @var string
-     * @Assert\Regex("#[\d]+[a-zA-z]*#")
+     * @Assert\Regex("#[0-9]+[a-zA-z]*#")
      * @ORM\Column(name="flat_number", type="string", length=255, nullable = true)
      */
     private $flatNumber;

@@ -14,7 +14,7 @@
             <div class="btn-group">
                 {% if user in crew.users %}
                     {%if crew.photo is not null%}
-                        <a class="btn btn-custom" href="/photo/{{crew.photo.id}}/edit">Edytuj zdjęcie</a>
+                        <a class="btn btn-custom" href="/photo/crew/{{crew.photo.id}}">Edytuj zdjęcie</a>
                     {% else %} 
                         <a class="btn btn-custom" href="/photo/crew/create/{{crew.id}}">Dodaj zdjęcie</a>
                     {% endif %}
