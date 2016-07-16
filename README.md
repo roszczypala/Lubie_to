@@ -1,6 +1,9 @@
-joinUs
+meetUs 
+
+http://imeetus.pl/
+
 ======
-joinUs is a great new website connecting people with same hobbies, allowing them to meet up and do amazing things together.
+meetUs is a great new website connecting people with same hobbies, allowing them to meet up and do amazing things together.
 
 Website was created using:
 
