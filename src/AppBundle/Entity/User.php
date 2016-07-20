@@ -5,6 +5,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
 * @ORM\Entity(repositoryClass="AppBundle\Entity\UserRepository")
@@ -42,28 +43,28 @@ class User extends BaseUser
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Musisz podać miasto")
      * @ORM\Column(name="city", type="string", length=255, nullable = true)
      */
     private $city;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Musisz podać nazwę ulicy")
      * @ORM\Column(name="street", type="string", length=255, nullable = true)
      */
     private $street;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Musisz podać numer ulicy")
      * @ORM\Column(name="street_number", type="string", length=255, nullable = true)
      */
     private $streetNumber;
 
     /**
      * @var string
-     *
+     * 
      * @ORM\Column(name="flat_number", type="string", length=255, nullable = true)
      */
     private $flatNumber;
